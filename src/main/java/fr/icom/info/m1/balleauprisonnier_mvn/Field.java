@@ -1,7 +1,8 @@
-package fr.icom.info.m1.balleauprisonnier_mvn;
+package fr.icom.info.m1.balleauprisonnier_fx;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
@@ -18,7 +19,9 @@ import javafx.scene.paint.Color;
 public class Field extends Canvas {
 	
 	/** Joueurs */
-	Player [] joueurs = new Player[2];
+	Player [] joueurs = new Player[6];
+	Player [] equipe1 = new Player[3];
+	Player [] equipe2 = new Player[3];
 	/** Couleurs possibles */
 	String[] colorMap = new String[] {"blue", "green", "orange", "purple", "yellow"};
 	/** Tableau traçant les evenements */
@@ -48,11 +51,33 @@ public class Field extends Canvas {
         gc = this.getGraphicsContext2D();
         
         /** On initialise le terrain de jeu */
-    	joueurs[0] = new Player(gc, colorMap[0], w/2, h-50, "bottom");
-    	joueurs[0].display();
+    	equipe1[0] = new Player(gc, colorMap[0], w/2, h-30, "bottom");
+		equipe1[1] = new Bot(gc, colorMap[0], w-400, h-30, "bottom");
+		equipe1[2] = new Bot(gc, colorMap[0], w-200, h-30, "bottom");
+		equipe2[0] = new Player(gc, colorMap[1], w/2, 15, "top");
+		equipe2[1] = new Bot(gc, colorMap[1], w-400, 15, "top");
+		equipe2[2] = new Bot(gc, colorMap[1], w-200, 15, "top");
 
-    	joueurs[1] = new Player(gc, colorMap[1], w/2, 20, "top");
-    	joueurs[1].display();
+		int len1 = equipe1.length;
+		int len2 = equipe2.length;
+
+		System.arraycopy(equipe1, 0, joueurs, 0, len1);
+		System.arraycopy(equipe2, 0, joueurs, len1, len2);
+
+		for (int i=0;i<joueurs.length;i++){
+			joueurs[i].display(); // on affiche tous les joueurs
+		}
+
+		// 1 Balle par jeu : Initialise la balle
+		Projectile ball = new Projectile(gc,"top",joueurs[3].x,joueurs[3].y,joueurs[3]);
+		joueurs[3].setBall(ball);
+		joueurs[3].setHasBall(true);
+
+
+		//display la balle dans la boucle
+		//si la balle touche le sol (personne) alors la remettre à qql d'aléatoire dans le camp en question
+		//si la balle touche qql il meurt
+
 
 
 	    /** 
@@ -106,43 +131,57 @@ public class Field extends Canvas {
 	            // Deplacement et affichage des joueurs
 	        	for (int i = 0; i < joueurs.length; i++) 
 	    	    {
-	        		if (i==0 && input.contains("LEFT"))
+					if(colision(joueurs[i],ball)){
+						//le joueur meurt balle chez le camp perdant
+					}
+					if(!ball.ballIsTaken){
+						ball.displayBall();
+					}
+					if(joueurs[i].hasBall){
+						joueurs[i].displayBall();
+					}
+					if(joueurs[i].isBot){
+						joueurs[i].move();
+						joueurs[i].turn();
+					}
+	        		if (joueurs[i].side == "bottom" && input.contains("LEFT") && !joueurs[i].isBot)
 	        		{
 	        			joueurs[i].moveLeft();
 	        		} 
-	        		if (i==0 && input.contains("RIGHT")) 
+	        		if (joueurs[i].side == "bottom" && input.contains("RIGHT") && !joueurs[i].isBot)
 	        		{
 	        			joueurs[i].moveRight();	        			
 	        		}
-	        		if (i==0 && input.contains("UP"))
+	        		if (joueurs[i].side == "bottom" && input.contains("UP") && !joueurs[i].isBot)
 	        		{
 	        			joueurs[i].turnLeft();
 	        		} 
-	        		if (i==0 && input.contains("DOWN")) 
+	        		if (joueurs[i].side == "bottom"&& input.contains("DOWN") && !joueurs[i].isBot)
 	        		{
 	        			joueurs[i].turnRight();	        			
 	        		}
-	        		if (i==1 && input.contains("A"))
+					if (joueurs[i].side == "bottom" && input.contains("ENTER") && !joueurs[i].isBot && joueurs[i].hasBall){
+						joueurs[i].shoot();
+					}
+	        		if (joueurs[i].side == "top" && input.contains("Q") && !joueurs[i].isBot)
 	        		{
 	        			joueurs[i].moveLeft();
 	        		} 
-	        		if (i==1 && input.contains("D")) 
+	        		if (joueurs[i].side == "top" && input.contains("D") && !joueurs[i].isBot)
 	        		{
 	        			joueurs[i].moveRight();	        			
 	        		}
-	        		if (i==1 && input.contains("W"))
+	        		if (joueurs[i].side == "top" && input.contains("Z") && !joueurs[i].isBot)
 	        		{
 	        			joueurs[i].turnLeft();
 	        		} 
-	        		if (i==1 && input.contains("S")) 
+	        		if (joueurs[i].side == "top"&& input.contains("S") && !joueurs[i].isBot)
 	        		{
 	        			joueurs[i].turnRight();	        			
 	        		}
-	        		if (input.contains("SPACE")){
+	        		if (joueurs[i].side == "top" && input.contains("SPACE") && !joueurs[i].isBot && joueurs[i].hasBall){
 	        			joueurs[i].shoot();
 					}
-
-	        		
 	        		joueurs[i].display();
 	    	    }
 	    	}
@@ -152,5 +191,45 @@ public class Field extends Canvas {
 
 	public Player[] getJoueurs() {
 		return joueurs;
+	}
+	public Player[] getEquipe1() {
+		return equipe1;
+	}
+	public Player[] getEquipe2() {
+		return equipe2;
+	}
+
+	public boolean colision (Player joueur,Projectile ball){
+		Sprite sprite1 = joueur.getSprite();
+		Sprite sprite2 = ball.getSprite();
+
+		double x1 = joueur.getX();
+		double y1 = joueur.getY();
+
+
+
+		double h1 = sprite1.getHauteurImage();
+		double h2 = sprite2.getHauteurImage();
+		double t1 = sprite1.getTailleImage();
+		double t2 = sprite2.getTailleImage();
+
+		//coordonneesJoueur =;
+		for (double i = x1;i<h1;i++){
+
+		}
+
+		//récupérer les coordonnées
+
+		if(h1 == h2 && t1 == t2){
+			//return true;
+		}else{
+			//bornes de la hitbox :
+			//for (int i=-30;i<30;i++){
+			//	if(t1+i == t2){
+					//t1
+			//	}
+			//}
+		}
+		return false;
 	}
 }

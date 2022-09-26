@@ -1,4 +1,4 @@
-package fr.icom.info.m1.balleauprisonnier_mvn;
+package fr.icom.info.m1.balleauprisonnier_fx;
 
 import javafx.animation.*;
 import javafx.beans.property.*;
@@ -18,24 +18,31 @@ class Sprite extends ImageView {
     private Timeline timeline;
     public boolean isRunning;
 
+    public double hauteurImage;
+
+    public double tailleImage;
+
+
     public Sprite(Image animationImage, int numCells, int numRows, Duration frameTime, String side) {
         this.numCells = numCells;
 
-        double cellWidth  = 64;//animationImage.getWidth() / numCells; //64x64
+        double cellWidth = 64;//animationImage.getWidth() / numCells; //64x64
         double cellHeight = 64;//animationImage.getHeight() / numRows;
 
+        this.hauteurImage = animationImage.getHeight();
+        this.tailleImage = animationImage.getWidth();
 
         numCellsWalk = 9;
 
         int lineNumber = 8;
-        if(side == "top"){
+        if (side == "top") {
             lineNumber += 2;
         }
 
         walkClips = new Rectangle2D[numCellsWalk];
         for (int i = 0; i < numCellsWalk; i++) {
             walkClips[i] = new Rectangle2D(
-                    i * cellWidth, cellHeight*lineNumber,
+                    i * cellWidth, cellHeight * lineNumber,
                     cellWidth, cellHeight
             );
         }
@@ -54,9 +61,9 @@ class Sprite extends ImageView {
         lineNumber += 8;
 
         shootClips = new Rectangle2D[numCellsShoot];
-        for (int i = 0; i < numCellsShoot; i++){
+        for (int i = 0; i < numCellsShoot; i++) {
             shootClips[i] = new Rectangle2D(
-                    i * cellWidth, cellHeight*lineNumber,
+                    i * cellWidth, cellHeight * lineNumber,
                     cellWidth, cellHeight
             );
         }
@@ -80,7 +87,7 @@ class Sprite extends ImageView {
         timeline.playFromStart();
     }
 
-    public void playShoot(){
+    public void playShoot() {
         frameCounter.set(0);
         timeline.stop();
         timeline = shootTimeline;
@@ -94,4 +101,14 @@ class Sprite extends ImageView {
         setViewport(walkClips[frameCounter.get()]);
         walkTimeline.stop();
     }
+
+    public double getHauteurImage() {
+        return hauteurImage;
+    }
+
+    public double getTailleImage() {
+        return tailleImage;
+    }
+
+
 }
