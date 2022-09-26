@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="566e5781-5387-4cbb-9c94-1fa2a5102356" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/TP1.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP1.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/balleauprisonnier/src/assets/PlayerArrow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/balleauprisonnier/src/assets/PlayerArrowDown.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/balleauprisonnier/src/assets/PlayerArrowUp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/balleauprisonnier/src/assets/PlayerBlue.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/balleauprisonnier/src/assets/PlayerRed.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/balleauprisonnier/src/assets/ball.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/balleauprisonnier/src/assets/explosion.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/balleauprisonnier/src/assets/orc.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/balleauprisonnier/src/assets/skeleton.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/balleauprisonnier/src/fr/icom/info/m1/balleauprisonnier_fx/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/balleauprisonnier/src/fr/icom/info/m1/balleauprisonnier_fx/Bot.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/balleauprisonnier/src/fr/icom/info/m1/balleauprisonnier_fx/Field.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/balleauprisonnier/src/fr/icom/info/m1/balleauprisonnier_fx/Player.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/balleauprisonnier/src/fr/icom/info/m1/balleauprisonnier_fx/Projectile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/balleauprisonnier/src/fr/icom/info/m1/balleauprisonnier_fx/Sprite.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TP1/assets/PlayerArrow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TP1/assets/PlayerArrowDown.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TP1/assets/PlayerArrowUp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TP1/assets/PlayerBlue.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TP1/assets/PlayerRed.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TP1/assets/ball.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TP1/assets/explosion.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TP1/assets/orc.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TP1/assets/skeleton.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TP1/fr/icom/info/m1/balleauprisonnier_fx/App.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TP1/fr/icom/info/m1/balleauprisonnier_fx/Bot.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TP1/fr/icom/info/m1/balleauprisonnier_fx/Field$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TP1/fr/icom/info/m1/balleauprisonnier_fx/Field$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TP1/fr/icom/info/m1/balleauprisonnier_fx/Field$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TP1/fr/icom/info/m1/balleauprisonnier_fx/Field.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TP1/fr/icom/info/m1/balleauprisonnier_fx/Player.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TP1/fr/icom/info/m1/balleauprisonnier_fx/Projectile.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TP1/fr/icom/info/m1/balleauprisonnier_fx/Sprite.class" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="module-info" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectId" id="2EgY6LWyeD0o5A2t1kcQ5CYbF7X" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/nathan/fac/m1/s1/ConceptionAgile/tp1",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "shared-indexes"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="fr.icom.info.m1.balleauprisonnier_fx.App" />
+      <module name="TP1" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;$USER_HOME$/Documents/javafx-sdk-19/lib&quot; --add-modules javafx.controls,javafx.fxml " />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="566e5781-5387-4cbb-9c94-1fa2a5102356" name="Changes" comment="" />
+      <created>1663018518984</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1663018518984</updated>
+      <workItem from="1663018523229" duration="6179000" />
+      <workItem from="1663146822802" duration="4489000" />
+      <workItem from="1663193556357" duration="4174000" />
+      <workItem from="1663238766595" duration="2041000" />
+      <workItem from="1663585872675" duration="14131000" />
+      <workItem from="1663699234124" duration="6044000" />
+      <workItem from="1664024083295" duration="3615000" />
+      <workItem from="1664132269340" duration="434000" />
+      <workItem from="1664192445750" duration="5384000" />
+      <workItem from="1664200888122" duration="2192000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
