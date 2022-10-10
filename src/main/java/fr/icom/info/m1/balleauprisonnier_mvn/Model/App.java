@@ -22,6 +22,12 @@ public class App extends Application {
      */
     @Override
     public void start(Stage stage) throws Exception {
+
+
+        /*
+        séparer la vue du model pour le main, créer classe GUI...
+        (voir projet l3 s1 méthodeProg CC2) 
+         */
         // Nom de la fenetre
         stage.setTitle("Balle Au Prisonnier");
         stage.getIcons().add(new Image("assets/ball.png")); // icon du jeu
@@ -31,7 +37,9 @@ public class App extends Application {
 
         // On cree le terrain de jeu et on l'ajoute a la racine de la scene
         //Field gameField = new Field(scene, 600, 600);
+
         Field gameField = new Field(scene, 600, 600);
+        Projectile ball = new Projectile(gameField.gc,"top",gameField.getJoueurs()[3].getX(),gameField.getJoueurs()[3].getY(),gameField.getJoueurs()[3]);
         root.getChildren().add(gameField);
         root.getChildren().add(gameField.getJoueurs()[0].sprite);
         root.getChildren().add(gameField.getJoueurs()[1].sprite);
@@ -39,6 +47,7 @@ public class App extends Application {
         root.getChildren().add(gameField.getJoueurs()[3].sprite);
         root.getChildren().add(gameField.getJoueurs()[4].sprite);
         root.getChildren().add(gameField.getJoueurs()[5].sprite);
+        root.getChildren().add(ball.sprite);
 
         // On ajoute la scene a la fenetre et on affiche
 
