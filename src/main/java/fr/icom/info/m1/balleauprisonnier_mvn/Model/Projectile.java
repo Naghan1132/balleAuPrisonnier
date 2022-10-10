@@ -1,4 +1,4 @@
-package fr.icom.info.m1.balleauprisonnier_mvn;
+package fr.icom.info.m1.balleauprisonnier_mvn.Model;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -32,9 +32,18 @@ public class Projectile {
         sprite.setY(y);
     }
     public void displayBall(){
+        //changer de place
         graphicsContext.save(); // saves the current state on stack, including the current transform
         graphicsContext.drawImage(ball,x, y);
         graphicsContext.restore(); // back to original state
+
+
+
+        //final double vecteur = double[2];
+        //vecteur[0] = Math.cos(Math.toRadians(90*2));
+        //vecteur[1] = Math.sin(Math.toRadians(90*5));
+        //truc comme cà
+
     }
     public Image getBall(){
         return this.ball;
@@ -83,6 +92,7 @@ public class Projectile {
     }
 
     private void rotate(GraphicsContext gc, double angle, double px, double py) {
+
         Rotate r = new Rotate(angle, px, py);
         gc.setTransform(r.getMxx(), r.getMyx(), r.getMxy(), r.getMyy(), r.getTx(), r.getTy());
     }

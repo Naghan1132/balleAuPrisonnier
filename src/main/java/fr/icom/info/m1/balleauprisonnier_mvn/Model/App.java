@@ -1,4 +1,4 @@
-package fr.icom.info.m1.balleauprisonnier_mvn;
+package fr.icom.info.m1.balleauprisonnier_mvn.Model;
 
 
 import javafx.application.Application;
@@ -22,11 +22,12 @@ public class App extends Application {
      */
     @Override
     public void start(Stage stage) throws Exception {
-
-
         /*
         séparer la vue du model pour le main, créer classe GUI...
-        (voir projet l3 s1 méthodeProg CC2) 
+        (voir projet l3 s1 méthodeProg CC2)
+
+        Pattern a utiliser  : Strategy (simple)
+                            :
          */
         // Nom de la fenetre
         stage.setTitle("Balle Au Prisonnier");

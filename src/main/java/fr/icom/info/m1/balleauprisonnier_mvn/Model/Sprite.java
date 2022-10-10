@@ -1,4 +1,4 @@
-package fr.icom.info.m1.balleauprisonnier_mvn;
+package fr.icom.info.m1.balleauprisonnier_mvn.Model;
 
 import javafx.animation.*;
 import javafx.beans.property.*;
