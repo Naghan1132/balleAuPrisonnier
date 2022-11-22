@@ -13,19 +13,14 @@ import java.util.Random;
  */
 public class Player {
     boolean isBot;
-
     boolean isDead = false;
-
     boolean hasBall = false;
-
     String side;
-
     double x;       // position horizontale du joueur
     final double y;      // position verticale du joueur
     double angle = 0; // rotation du joueur, devrait toujours être en 0 et 180
     double step;    // pas d'un joueur
     String playerColor;
-
     // On une image globale du joueur
     Image directionArrow;
     Projectile ball;
@@ -163,17 +158,28 @@ public class Player {
         ball.ballIsTaken = false;
 
         if(this.side=="top"){
+            //Projectile ball = new Projectile(this.graphicsContext,this.side,this.x,this.y,this);
             double v = ball.getVitesse();
             for (double i = ball.getY();i<560;i+=v){
 
-                //a revoir
+                //a revoi
+                //ball.spriteAnimate();
                 ball.setX(this.x);
                 ball.setY(i);
                 ball.setDirection(this.angle);
-                ball.displayBall(); //déjà display dans la boucle
+                //ball.displayBall(); //déjà display dans la boucle
             }
         }
 
+    }
+
+    public Projectile shoot2(){
+        sprite.playShoot();
+        ball.setVitesse(3);
+        ball.setAngle(angle);
+        Projectile tmpball = ball;
+        setBall(false);
+        return tmpball;
     }
 
     /**

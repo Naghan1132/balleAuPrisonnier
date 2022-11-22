@@ -1,6 +1,9 @@
-package fr.icom.info.m1.balleauprisonnier_mvn.Model;
+package fr.icom.info.m1.balleauprisonnier_mvn.View;
 
 
+import fr.icom.info.m1.balleauprisonnier_mvn.Controler.Controler;
+import fr.icom.info.m1.balleauprisonnier_mvn.Model.Field;
+import fr.icom.info.m1.balleauprisonnier_mvn.Model.Projectile;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -37,18 +40,18 @@ public class App extends Application {
         Scene scene = new Scene(root);
 
         // On cree le terrain de jeu et on l'ajoute a la racine de la scene
-        //Field gameField = new Field(scene, 600, 600);
 
-        Field gameField = new Field(scene, 600, 600);
-        Projectile ball = new Projectile(gameField.gc,"top",gameField.getJoueurs()[3].getX(),gameField.getJoueurs()[3].getY(),gameField.getJoueurs()[3]);
+        Field gameField = Field.getInstance();
+        Controler controler = new Controler();
+        //Projectile ball = new Projectile(gameField.getGc(),"top",gameField.getJoueurs()[3].getX(),gameField.getJoueurs()[3].getY(),gameField.getJoueurs()[3]);
         root.getChildren().add(gameField);
-        root.getChildren().add(gameField.getJoueurs()[0].sprite);
-        root.getChildren().add(gameField.getJoueurs()[1].sprite);
-        root.getChildren().add(gameField.getJoueurs()[2].sprite);
-        root.getChildren().add(gameField.getJoueurs()[3].sprite);
-        root.getChildren().add(gameField.getJoueurs()[4].sprite);
-        root.getChildren().add(gameField.getJoueurs()[5].sprite);
-        root.getChildren().add(ball.sprite);
+        root.getChildren().add(gameField.getJoueurs()[0].getSprite());
+        root.getChildren().add(gameField.getJoueurs()[1].getSprite());
+        root.getChildren().add(gameField.getJoueurs()[2].getSprite());
+        root.getChildren().add(gameField.getJoueurs()[3].getSprite());
+        root.getChildren().add(gameField.getJoueurs()[4].getSprite());
+        root.getChildren().add(gameField.getJoueurs()[5].getSprite());
+
 
         // On ajoute la scene a la fenetre et on affiche
 
