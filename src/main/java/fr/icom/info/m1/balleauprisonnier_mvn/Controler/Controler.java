@@ -64,45 +64,45 @@ public class Controler {
                 for (int i = 0; i < joueurs.length; i++)
                 {
                     if(joueurs[i].isBot){
-                        joueurs[i].move();
-                        joueurs[i].turn();
+                        joueurs[i].move("bot");
+                        joueurs[i].turn("bot");
                     }
-                    if (joueurs[i].getSide() == "bottom" && input.contains("LEFT") && !joueurs[i].isBot)
+                    if (joueurs[i].getSide() == "bottom" && input.contains("LEFT"))
                     {
-                        joueurs[i].moveLeft();
+                        joueurs[i].move("left");
                     }
-                    if (joueurs[i].getSide() == "bottom" && input.contains("RIGHT") && !joueurs[i].isBot)
+                    if (joueurs[i].getSide() == "bottom" && input.contains("RIGHT"))
                     {
-                        joueurs[i].moveRight();
+                        joueurs[i].move("right");
                     }
-                    if (joueurs[i].getSide() == "bottom" && input.contains("UP") && !joueurs[i].isBot)
+                    if (joueurs[i].getSide() == "bottom" && input.contains("UP"))
                     {
-                        joueurs[i].turnLeft();
+                        joueurs[i].turn("left");
                     }
-                    if (joueurs[i].getSide() == "bottom"&& input.contains("DOWN") && !joueurs[i].isBot)
+                    if (joueurs[i].getSide() == "bottom"&& input.contains("DOWN"))
                     {
-                        joueurs[i].turnRight();
+                        joueurs[i].turn("right");
                     }
-                    if (joueurs[i].getSide() == "top" && input.contains("Q") && !joueurs[i].isBot)
+                    if (joueurs[i].getSide() == "top" && input.contains("Q"))
                     {
-                        joueurs[i].moveLeft();
+                        joueurs[i].move("left");
                     }
-                    if (joueurs[i].getSide() == "top" && input.contains("D") && !joueurs[i].isBot)
+                    if (joueurs[i].getSide() == "top" && input.contains("D"))
                     {
-                        joueurs[i].moveRight();
+                        joueurs[i].move("right");
                     }
-                    if (joueurs[i].getSide() == "top" && input.contains("Z") && !joueurs[i].isBot)
+                    if (joueurs[i].getSide() == "top" && input.contains("Z"))
                     {
-                        joueurs[i].turnLeft();
+                        joueurs[i].turn("left");
                     }
-                    if (joueurs[i].getSide() == "top"&& input.contains("S") && !joueurs[i].isBot)
+                    if (joueurs[i].getSide() == "top"&& input.contains("S"))
                     {
-                        joueurs[i].turnRight();
+                        joueurs[i].turn("right");
                     }
-                    if (joueurs[i].getSide() == "top" && input.contains("SPACE") && !joueurs[i].isBot && joueurs[i].hasBall()){
+                    if (joueurs[i].getSide() == "top" && input.contains("SPACE") && joueurs[i].hasBall()){
                         this.ball = joueurs[i].shoot();
                     }
-                    if (joueurs[i].getSide() == "bottom" && input.contains("ENTER") && !joueurs[i].isBot && joueurs[i].hasBall()){
+                    if (joueurs[i].getSide() == "bottom" && input.contains("ENTER") && joueurs[i].hasBall()){
                         this.ball = joueurs[i].shoot();
                     }
                     if (this.ball != null) {

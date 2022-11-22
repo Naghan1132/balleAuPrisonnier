@@ -18,22 +18,22 @@ public class Bot extends Player {
     }
 
     @Override
-    public void turn() {
+    public void turn(String direc) {
         Random rand = new Random();
         if (rand.nextBoolean()) {
-            super.turnRight();
+            super.turn("left");
         } else {
-            super.turnLeft();
+            super.turn("right");
         }
     }
 
     @Override
-    public void move() {
+    public void move(String direc) {
         Random rand = new Random();
         if (rand.nextBoolean()) {
-            super.moveLeft();
+            super.move("left");
         } else {
-            super.moveRight();
+            super.move("right");
         }
 
     }

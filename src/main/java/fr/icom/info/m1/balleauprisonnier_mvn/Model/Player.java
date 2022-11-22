@@ -99,55 +99,6 @@ public class Player {
         gc.setTransform(r.getMxx(), r.getMyx(), r.getMxy(), r.getMyy(), r.getTx(), r.getTy());
     }
 
-    /**
-     * Deplacement du joueur vers la gauche, on cantonne le joueur sur le plateau de jeu
-     */
-
-    public void moveLeft() {
-        if (x > 10) {
-            spriteAnimate();
-            x -= step;
-            if(this.hasBall){
-                this.ball.setX(x);
-                this.ball.setY(y+5);
-            }
-        }
-    }
-
-    /**
-     * Deplacement du joueur vers la droite
-     */
-    public void moveRight() {
-        if (x < 520) {
-            spriteAnimate();
-            x += step;
-            if(this.hasBall){
-                this.ball.setX(x);
-                this.ball.setY(y+5);
-            }
-        }
-    }
-
-
-    /**
-     * Rotation du joueur vers la gauche
-     */
-    public void turnLeft() {
-        if (angle < 90) {
-            angle += 0.3;
-        }
-    }
-
-
-    /**
-     * Rotation du joueur vers la droite
-     */
-    public void turnRight() {
-        if (angle > -90) {
-            angle -= 0.3;
-        }
-    }
-
     public Projectile shoot(){
         sprite.playShoot();
         this.ball.setAngle(angle);
@@ -173,12 +124,45 @@ public class Player {
         sprite.setY(y);
     }
 
-    public void move() {
+    public void move(String direc) {
         //rien, pour les bots
+        if (direc == "right"){
+            if (x < 520) {
+                spriteAnimate();
+                x += step;
+                if(this.hasBall){
+                    this.ball.setX(x);
+                    this.ball.setY(y+5);
+                }
+            }
+        }else if(direc == "left"){
+            if (x > 10) {
+                spriteAnimate();
+                x -= step;
+                if(this.hasBall){
+                    this.ball.setX(x);
+                    this.ball.setY(y+5);
+                }
+            }
+        }
     }
 
-    public void turn() {
-        //rien, pour les bots
+    /**
+     * Rotation du tir
+     */
+    public void turn(String direc) {
+        // Rotation du tir vers la gauche
+        if(direc == "left"){
+            if (angle < 90) {
+                angle += 0.3;
+            }
+        }
+        // Rotation du tir vers la droite
+        else if(direc == "right"){
+            if (angle > -90) {
+                angle -= 0.3;
+            }
+        }
     }
     public boolean hasBall() {
         return hasBall;
