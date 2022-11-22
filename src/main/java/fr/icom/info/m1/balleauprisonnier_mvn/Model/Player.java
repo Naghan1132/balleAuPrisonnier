@@ -150,8 +150,8 @@ public class Player {
 
     public Projectile shoot(){
         sprite.playShoot();
-        ball.setAngle(angle);
-        Projectile ballShooted = ball;
+        this.ball.setAngle(angle);
+        Projectile ballShooted = this.ball;
         this.setHasBall(false);
         this.setBall(null);
         return ballShooted;
@@ -166,7 +166,6 @@ public class Player {
     }
 
     public void spriteAnimate() {
-        //System.out.println("Animating sprite");
         if (!sprite.isRunning) {
             sprite.playContinuously();
         }

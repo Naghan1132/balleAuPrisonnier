@@ -8,7 +8,6 @@ import javafx.event.EventHandler;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.input.KeyEvent;
-//import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class Controler {

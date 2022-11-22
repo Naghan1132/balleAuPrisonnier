@@ -48,17 +48,26 @@ public class Projectile {
         this.graphicsContext.restore(); // back to original state (before rotation)
     }
     public void shooted(){
-        // spriteAnimate();
-        int rota;
+
+        // Collision contre les murs
+        if (x < 0 || x > 600 - ball.getWidth()) {
+            angle = -angle;
+        }
+        // La balle s'arrete dans le camp adverse
+        if (y < 0 || y > 600 - ball.getHeight()){
+            this.setVitesse(0);
+        }
+
+        int rotation;
         if(side.equals("top")){
-            rota = 90;
+            rotation = 90;
         }
         else{
-            rota = 270;
+            rotation = 270;
         }
         final double[] vector = new double[2];
-        vector[0] = Math.cos(Math.toRadians(angle+rota));
-        vector[1] = Math.sin(Math.toRadians(angle+rota));
+        vector[0] = Math.cos(Math.toRadians(angle+rotation));
+        vector[1] = Math.sin(Math.toRadians(angle+rotation));
         x += vector[0] * this.vitesse;
         y += vector[1] * this.vitesse;
     }
