@@ -12,7 +12,7 @@ import java.util.Random;
  * Classe gerant un joueur
  */
 public class Player {
-    boolean isBot;
+    public boolean isBot;
     boolean isDead = false;
     boolean hasBall = false;
     String side;
@@ -82,29 +82,17 @@ public class Player {
     /**
      * Affichage du joueur
      */
-    void display() {
+    public void display() {
         //affiche la fleche
         graphicsContext.save(); // saves the current state on stack, including the current transform
         rotate(graphicsContext, angle, x + directionArrow.getWidth() / 2, y + directionArrow.getHeight() / 2);
         graphicsContext.drawImage(directionArrow, x, y);
         graphicsContext.restore(); // back to original state (before rotation)
-    }
-
-
-    void displayBall() {
-        //NE PAS METTRE ICI
-        //affiche la balle
-        graphicsContext.save(); // saves the current state on stack, including the current transform
-        if(this.side == "top"){
-            //mettre devant le joueurs
-            graphicsContext.drawImage(ball.getBall(),x+10, y+60);
-            ball.setDirection(this.angle);
-        }else{
-            graphicsContext.drawImage(ball.getBall(),x-10, y-60);
-            ball.setDirection(this.angle);
+        if(this.ball != null){
+            this.ball.reset(this.x,this.y,this.angle);
         }
-        graphicsContext.restore(); // back to original state
     }
+
 
     private void rotate(GraphicsContext gc, double angle, double px, double py) {
         Rotate r = new Rotate(angle, px, py);
@@ -115,20 +103,28 @@ public class Player {
      * Deplacement du joueur vers la gauche, on cantonne le joueur sur le plateau de jeu
      */
 
-    void moveLeft() {
+    public void moveLeft() {
         if (x > 10) {
             spriteAnimate();
             x -= step;
+            if(this.hasBall){
+                this.ball.setX(x);
+                this.ball.setY(y+5);
+            }
         }
     }
 
     /**
      * Deplacement du joueur vers la droite
      */
-    void moveRight() {
+    public void moveRight() {
         if (x < 520) {
             spriteAnimate();
             x += step;
+            if(this.hasBall){
+                this.ball.setX(x);
+                this.ball.setY(y+5);
+            }
         }
     }
 
@@ -136,7 +132,7 @@ public class Player {
     /**
      * Rotation du joueur vers la gauche
      */
-    void turnLeft() {
+    public void turnLeft() {
         if (angle < 90) {
             angle += 0.3;
         }
@@ -146,51 +142,30 @@ public class Player {
     /**
      * Rotation du joueur vers la droite
      */
-    void turnRight() {
+    public void turnRight() {
         if (angle > -90) {
             angle -= 0.3;
         }
     }
 
-    void shoot() {
+    public Projectile shoot(){
         sprite.playShoot();
-        this.hasBall = false;
-        ball.ballIsTaken = false;
-
-        if(this.side=="top"){
-            //Projectile ball = new Projectile(this.graphicsContext,this.side,this.x,this.y,this);
-            double v = ball.getVitesse();
-            for (double i = ball.getY();i<560;i+=v){
-
-                //a revoi
-                //ball.spriteAnimate();
-                ball.setX(this.x);
-                ball.setY(i);
-                ball.setDirection(this.angle);
-                //ball.displayBall(); //déjà display dans la boucle
-            }
-        }
-
-    }
-
-    public Projectile shoot2(){
-        sprite.playShoot();
-        ball.setVitesse(3);
         ball.setAngle(angle);
-        Projectile tmpball = ball;
-        setBall(false);
-        return tmpball;
+        Projectile ballShooted = ball;
+        this.setHasBall(false);
+        this.setBall(null);
+        return ballShooted;
     }
 
     /**
      * Deplacement en mode boost
      */
-    void boost() {
+    public void boost() {
         x += step * 2;
         spriteAnimate();
     }
 
-    void spriteAnimate() {
+    public void spriteAnimate() {
         //System.out.println("Animating sprite");
         if (!sprite.isRunning) {
             sprite.playContinuously();
@@ -199,14 +174,14 @@ public class Player {
         sprite.setY(y);
     }
 
-    void move() {
+    public void move() {
         //rien, pour les bots
     }
 
-    void turn() {
+    public void turn() {
         //rien, pour les bots
     }
-    public boolean isHasBall() {
+    public boolean hasBall() {
         return hasBall;
     }
 
@@ -216,6 +191,13 @@ public class Player {
 
     public void setBall(Projectile ball){
         this.ball = ball;
+    }
+    public Projectile getBall(){
+        return this.ball;
+    }
+    public void createBall(){
+        ball = new Projectile(this.graphicsContext,this.side,this.x,this.y,this.angle);
+        this.setBall(ball);
     }
 
     public Sprite getSprite(){
@@ -227,5 +209,9 @@ public class Player {
     }
     public double getY(){
         return this.y;
+    }
+
+    public String getSide(){
+        return this.side;
     }
 }

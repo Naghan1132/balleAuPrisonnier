@@ -42,8 +42,7 @@ public class App extends Application {
         // On cree le terrain de jeu et on l'ajoute a la racine de la scene
 
         Field gameField = Field.getInstance();
-        Controler controler = new Controler();
-        //Projectile ball = new Projectile(gameField.getGc(),"top",gameField.getJoueurs()[3].getX(),gameField.getJoueurs()[3].getY(),gameField.getJoueurs()[3]);
+        new Controler();
         root.getChildren().add(gameField);
         root.getChildren().add(gameField.getJoueurs()[0].getSprite());
         root.getChildren().add(gameField.getJoueurs()[1].getSprite());

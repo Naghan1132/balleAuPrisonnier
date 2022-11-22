@@ -7,8 +7,8 @@ import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-
-import java.awt.event.KeyEvent;
+import javafx.scene.input.KeyEvent;
+//import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class Controler {
@@ -55,7 +55,7 @@ public class Controler {
             double width = field.getWidth();
             double height = field.getHeight();
 
-            Projectile projectile = field.getProjectile();
+            Projectile ball = field.getProjectile();
             public void handle(long currentNanoTime) {
                 // On nettoie le canvas a chaque frame
                 gc.setFill(Color.LIGHTGRAY);
@@ -64,61 +64,52 @@ public class Controler {
                 // Deplacement et affichage des joueurs
                 for (int i = 0; i < joueurs.length; i++)
                 {
-                    //if(colision(joueurs[i],ball)){
-                        //le joueur meurt balle chez le camp perdant
-                    //}
-                    if(!ball.ballIsTaken){
-                        ball.displayBall();
-                    }
-                    if(joueurs[i].hasBall){
-                        joueurs[i].displayBall();
-                        //ball.displayBall();
-                    }
                     if(joueurs[i].isBot){
                         joueurs[i].move();
                         joueurs[i].turn();
                     }
-                    if (joueurs[i].side == "bottom" && input.contains("LEFT") && !joueurs[i].isBot)
+                    if (joueurs[i].getSide() == "bottom" && input.contains("LEFT") && !joueurs[i].isBot)
                     {
                         joueurs[i].moveLeft();
                     }
-                    if (joueurs[i].side == "bottom" && input.contains("RIGHT") && !joueurs[i].isBot)
+                    if (joueurs[i].getSide() == "bottom" && input.contains("RIGHT") && !joueurs[i].isBot)
                     {
                         joueurs[i].moveRight();
                     }
-                    if (joueurs[i].side == "bottom" && input.contains("UP") && !joueurs[i].isBot)
+                    if (joueurs[i].getSide() == "bottom" && input.contains("UP") && !joueurs[i].isBot)
                     {
                         joueurs[i].turnLeft();
                     }
-                    if (joueurs[i].side == "bottom"&& input.contains("DOWN") && !joueurs[i].isBot)
+                    if (joueurs[i].getSide() == "bottom"&& input.contains("DOWN") && !joueurs[i].isBot)
                     {
                         joueurs[i].turnRight();
                     }
-                    if (joueurs[i].side == "top" && input.contains("Q") && !joueurs[i].isBot)
+                    if (joueurs[i].getSide() == "top" && input.contains("Q") && !joueurs[i].isBot)
                     {
                         joueurs[i].moveLeft();
                     }
-                    if (joueurs[i].side == "top" && input.contains("D") && !joueurs[i].isBot)
+                    if (joueurs[i].getSide() == "top" && input.contains("D") && !joueurs[i].isBot)
                     {
                         joueurs[i].moveRight();
                     }
-                    if (joueurs[i].side == "top" && input.contains("Z") && !joueurs[i].isBot)
+                    if (joueurs[i].getSide() == "top" && input.contains("Z") && !joueurs[i].isBot)
                     {
                         joueurs[i].turnLeft();
                     }
-                    if (joueurs[i].side == "top"&& input.contains("S") && !joueurs[i].isBot)
+                    if (joueurs[i].getSide() == "top"&& input.contains("S") && !joueurs[i].isBot)
                     {
                         joueurs[i].turnRight();
                     }
-                    if (joueurs[i].side == "top" && input.contains("SPACE") && !joueurs[i].isBot && joueurs[i].hasBall){
-                        joueurs[i].shoot();
-                        projectile = joueurs[i].shoot();
+                    if (joueurs[i].getSide() == "top" && input.contains("SPACE") && !joueurs[i].isBot && joueurs[i].hasBall()){
+                        this.ball = joueurs[i].shoot();
                     }
-                    if (joueurs[i].side == "bottom" && input.contains("ENTER") && !joueurs[i].isBot && joueurs[i].hasBall){
-                        joueurs[i].shoot();
+                    if (joueurs[i].getSide() == "bottom" && input.contains("ENTER") && !joueurs[i].isBot && joueurs[i].hasBall()){
+                        this.ball = joueurs[i].shoot();
+                    }
+                    if (this.ball != null) {
+                        this.ball.display();
                     }
                     joueurs[i].display();
-                    this.ball.displayBall();
                 }
             }
         }.start(); // On lance la boucle de rafraichissement

@@ -39,24 +39,23 @@ public class Field extends Canvas {
      * @param w largeur du canvas
      * @param h hauteur du canvas
      */
-	public Field(int w, int h)
-	{
-		super(w, h); 
+	public Field(int w, int h) {
+		super(w, h);
 		this.width = w;
 		this.height = h;
-		
+
 		/** permet de capturer le focus et donc les evenements clavier et souris */
 		this.setFocusTraversable(true);
-		
-        gc = this.getGraphicsContext2D();
-        
-        /** On initialise le terrain de jeu */
-    	equipe1[0] = new Player(gc, colorMap[0], w/2, h-30, "bottom");
-		equipe1[1] = new Bot(gc, colorMap[0], w-400, h-30, "bottom");
-		equipe1[2] = new Bot(gc, colorMap[0], w-200, h-30, "bottom");
-		equipe2[0] = new Player(gc, colorMap[1], w/2, 15, "top");
-		equipe2[1] = new Bot(gc, colorMap[1], w-400, 15, "top");
-		equipe2[2] = new Bot(gc, colorMap[1], w-200, 15, "top");
+
+		gc = this.getGraphicsContext2D();
+
+		/** On initialise le terrain de jeu */
+		equipe1[0] = new Player(gc, colorMap[0], w / 2, h - 30, "bottom");
+		equipe1[1] = new Bot(gc, colorMap[0], w - 400, h - 30, "bottom");
+		equipe1[2] = new Bot(gc, colorMap[0], w - 200, h - 30, "bottom");
+		equipe2[0] = new Player(gc, colorMap[1], w / 2, 15, "top");
+		equipe2[1] = new Bot(gc, colorMap[1], w - 400, 15, "top");
+		equipe2[2] = new Bot(gc, colorMap[1], w - 200, 15, "top");
 
 		int len1 = equipe1.length;
 		int len2 = equipe2.length;
@@ -64,57 +63,17 @@ public class Field extends Canvas {
 		System.arraycopy(equipe1, 0, joueurs, 0, len1);
 		System.arraycopy(equipe2, 0, joueurs, len1, len2);
 
-		for (int i=0;i<joueurs.length;i++){
+		for (int i = 0; i < joueurs.length; i++) {
 			joueurs[i].display(); // on affiche tous les joueurs
 		}
 
+		joueurs[3].setHasBall(true);
+		joueurs[3].createBall();
+		ball = joueurs[3].getBall();
 
 		//display la balle dans la boucle
 		//si la balle touche le sol (personne) alors la remettre à qql d'aléatoire dans le camp en question
 		//si la balle touche qql il meurt
-
-
-
-	    /** 
-	     * Event Listener du clavier 
-	     * quand une touche est pressee on la rajoute a la liste d'input
-	     *   
-	     */
-	    this.setOnKeyPressed(
-	    		new EventHandler<KeyEvent>()
-	    	    {
-	    	        public void handle(KeyEvent e)
-	    	        {
-	    	            String code = e.getCode().toString();
-	    	            // only add once... prevent duplicates
-	    	            if ( !input.contains(code) )
-	    	                input.add( code );
-	    	        }
-	    	    });
-
-	    /** 
-	     * Event Listener du clavier 
-	     * quand une touche est relachee on l'enleve de la liste d'input
-	     *   
-	     */
-	    this.setOnKeyReleased(
-	    	    new EventHandler<KeyEvent>()
-	    	    {
-	    	        public void handle(KeyEvent e)
-	    	        {
-	    	            String code = e.getCode().toString();
-	    	            input.remove( code );
-	    	        }
-	    	    });
-	    
-	    /** 
-	     * 
-	     * Boucle principale du jeu
-	     * 
-	     * handle() est appelee a chaque rafraichissement de frame
-	     * soit environ 60 fois par seconde.
-	     * 
-	     */
 	}
 
 	public Player[] getJoueurs() {
@@ -125,6 +84,10 @@ public class Field extends Canvas {
 	}
 	public Player[] getEquipe2() {
 		return equipe2;
+	}
+
+	public Projectile getProjectile(){
+		return this.ball;
 	}
 
 	public GraphicsContext getGc(){

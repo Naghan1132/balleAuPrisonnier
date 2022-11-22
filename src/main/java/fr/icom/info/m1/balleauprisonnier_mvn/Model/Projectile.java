@@ -8,7 +8,7 @@ import javafx.util.Duration;
 
 public class Projectile {
 
-    double vitesse = 0.1;
+    double vitesse = 0.2;
     double angle = 90;
     protected double direction;
     Image ball;
@@ -17,50 +17,50 @@ public class Projectile {
     double x;
     double y;
     Sprite sprite;
-    Player player;
+    //Player player;
 
     boolean ballIsTaken = true;
 
-    public Projectile(GraphicsContext gc, String side,double x,double y,double vitesse,double angle) {
+    public Projectile(GraphicsContext gc, String side,double x,double y,double angle) {
         graphicsContext = gc;
-        //this.player = player;
         this.side = side;
         this.x = x;
         this.y = y;
-        this.vitesse = vitesse;
         this.angle = angle;
         ball = new Image("assets/ball.png");
         sprite = new Sprite(ball, 0, 0, Duration.seconds(0.5), side);
         sprite.setX(x);
         sprite.setY(y);
     }
-    void spriteAnimate() {
-        //System.out.println("Animating sprite");
+    public void spriteAnimate() {
         if (!sprite.isRunning) {
             sprite.playContinuously();
         }
         sprite.setX(x);
         sprite.setY(y);
     }
-    public void displayBall(){
-        //changer de place
-        graphicsContext.save(); // saves the current state on stack, including the current transform
-        //System.out.println("x : "+getX());
-        //System.out.println("y : "+getY());
-        spriteAnimate();
-        graphicsContext.drawImage(ball,x, y);
-        graphicsContext.restore(); // back to original state
 
-        //final double[] vector = new double[2];
-        //vector[0] = Math.cos(Math.toRadians(angle+rotation));
-        //vector[1] = Math.sin(Math.toRadians(angle+rotation));
-        ///x += vector[0] * speed;
-        //y += vector[1] * speed;
-
-        //System.out.println(vecteur[0]);
-        //System.out.println(vecteur[1]);
-
-
+    public void display(){
+        shooted();
+        this.graphicsContext.save(); // saves the current state on stack, including the current transform
+        rotate(this.graphicsContext, this.angle, this.x + this.ball.getWidth() / 2, this.y + this.ball.getHeight() / 2);
+        this.graphicsContext.drawImage(this.ball,this.x,this.y);
+        this.graphicsContext.restore(); // back to original state (before rotation)
+    }
+    public void shooted(){
+        // spriteAnimate();
+        int rota;
+        if(side.equals("top")){
+            rota = 90;
+        }
+        else{
+            rota = 270;
+        }
+        final double[] vector = new double[2];
+        vector[0] = Math.cos(Math.toRadians(angle+rota));
+        vector[1] = Math.sin(Math.toRadians(angle+rota));
+        x += vector[0] * this.vitesse;
+        y += vector[1] * this.vitesse;
     }
     public Image getBall(){
         return this.ball;
@@ -92,18 +92,9 @@ public class Projectile {
     public void setAngle(double a) {
         this.angle = a;
     }
-    public Player getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-
     public boolean isBallIsTaken() {
         return ballIsTaken;
     }
-
     public void setBallIsTaken(boolean ballIsTaken) {
         this.ballIsTaken = ballIsTaken;
     }
@@ -118,6 +109,11 @@ public class Projectile {
 
         Rotate r = new Rotate(angle, px, py);
         gc.setTransform(r.getMxx(), r.getMyx(), r.getMxy(), r.getMyy(), r.getTx(), r.getTy());
+    }
+    public void reset(double x,double y,double a){
+        this.x = x;
+        this.y = y;
+        this.angle= a;
     }
 
 

@@ -13,12 +13,12 @@ public class Bot extends Player {
     }
 
     @Override
-    void shoot() {
-        super.shoot();
+    public Projectile shoot() {
+        return super.shoot();
     }
 
     @Override
-    void turn() {
+    public void turn() {
         Random rand = new Random();
         if (rand.nextBoolean()) {
             super.turnRight();
@@ -28,7 +28,7 @@ public class Bot extends Player {
     }
 
     @Override
-    void move() {
+    public void move() {
         Random rand = new Random();
         if (rand.nextBoolean()) {
             super.moveLeft();
