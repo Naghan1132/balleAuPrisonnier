@@ -17,8 +17,6 @@ public class Projectile {
     double x;
     double y;
     Sprite sprite;
-    //Player player;
-
     boolean ballIsTaken = true;
 
     public Projectile(GraphicsContext gc, String side,double x,double y,double angle) {

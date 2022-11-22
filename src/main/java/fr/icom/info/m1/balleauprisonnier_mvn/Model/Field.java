@@ -51,11 +51,11 @@ public class Field extends Canvas {
 
 		/** On initialise le terrain de jeu */
 		equipe1[0] = new Player(gc, colorMap[0], w / 2, h - 30, "bottom");
-		equipe1[1] = new Bot(gc, colorMap[0], w - 400, h - 30, "bottom");
-		equipe1[2] = new Bot(gc, colorMap[0], w - 200, h - 30, "bottom");
+		equipe1[1] = new Bot(gc, colorMap[0], w - 400, h - 30, "bottom",equipe2);
+		equipe1[2] = new Bot(gc, colorMap[0], w - 200, h - 30, "bottom",equipe2);
 		equipe2[0] = new Player(gc, colorMap[1], w / 2, 15, "top");
-		equipe2[1] = new Bot(gc, colorMap[1], w - 400, 15, "top");
-		equipe2[2] = new Bot(gc, colorMap[1], w - 200, 15, "top");
+		equipe2[1] = new Bot(gc, colorMap[1], w - 400, 15, "top",equipe1);
+		equipe2[2] = new Bot(gc, colorMap[1], w - 200, 15, "top",equipe1);
 
 		int len1 = equipe1.length;
 		int len2 = equipe2.length;
