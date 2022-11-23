@@ -67,12 +67,11 @@ public class Field extends Canvas {
 			joueurs[i].display(); // on affiche tous les joueurs
 		}
 
-		joueurs[5].setHasBall(true);
-		joueurs[5].createBall();
-		ball = joueurs[5].getBall();
+		joueurs[3].setHasBall(true);
+		joueurs[3].createBall();
+		ball = joueurs[3].getBall();
 
-		//display la balle dans la boucle
-		//si la balle touche le sol (personne) alors la remettre à qql d'aléatoire dans le camp en question
+		//si la balle touche le sol (personne) alors un joueur doit la 'ramasser'
 		//si la balle touche qql il meurt
 	}
 

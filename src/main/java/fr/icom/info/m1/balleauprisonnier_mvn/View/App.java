@@ -35,13 +35,14 @@ public class App extends Application {
         (voir projet l3 s1 méthodeProg CC2)
 
         Pattern a utiliser  : Behavioral patterns => Strategy (simple => voir CC de licence)
+                                (avec obstables différents endroits, vitesse différentes etc...)
                             : Creational patterns => Singleton Java classe Field  (voir tp python) OK
          */
         /*
          TODO : - régler le problème du fillRect de la fenetre !!!! ou tester sur machine fac
-                - faire colisions avec joueurs (mais impossbile de test sans le fillRect)
-                - shot des bots avec IA
-                - desing paterns
+                - faire colisions balle/joueurs (mais galère de test sans le fillRect)
+                - shot des bots avec IA OK
+                - desing paterns (singleton fait !)
                 - faire des obstacles
                 - plusieurs vues :  une présentant le terrain (OK)
                                     une autre présentant le score (a faire)
@@ -70,7 +71,6 @@ public class App extends Application {
         root.getChildren().add(gameField.getJoueurs()[3].getSprite());
         root.getChildren().add(gameField.getJoueurs()[4].getSprite());
         root.getChildren().add(gameField.getJoueurs()[5].getSprite());
-
 
         // On ajoute la scene a la fenetre et on affiche
 

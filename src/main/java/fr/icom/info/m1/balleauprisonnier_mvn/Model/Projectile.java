@@ -17,7 +17,7 @@ public class Projectile {
     double x;
     double y;
     Sprite sprite;
-    boolean ballIsTaken = true;
+    boolean ballTaken = true;
 
     public Projectile(GraphicsContext gc, String side,double x,double y,double angle) {
         graphicsContext = gc;
@@ -27,13 +27,6 @@ public class Projectile {
         this.angle = angle;
         ball = new Image("assets/ball.png");
         sprite = new Sprite(ball, 0, 0, Duration.seconds(0.5), side);
-        sprite.setX(x);
-        sprite.setY(y);
-    }
-    public void spriteAnimate() {
-        if (!sprite.isRunning) {
-            sprite.playContinuously();
-        }
         sprite.setX(x);
         sprite.setY(y);
     }
@@ -55,7 +48,6 @@ public class Projectile {
         if (y < 0 || y > 600 - ball.getHeight()){
             this.setVitesse(0);
         }
-
         int rotation;
         if(side.equals("top")){
             rotation = 90;
@@ -99,11 +91,11 @@ public class Projectile {
     public void setAngle(double a) {
         this.angle = a;
     }
-    public boolean isBallIsTaken() {
-        return ballIsTaken;
+    public boolean isBallTaken() {
+        return ballTaken;
     }
-    public void setBallIsTaken(boolean ballIsTaken) {
-        this.ballIsTaken = ballIsTaken;
+    public void setBallIsTaken(boolean ballTaken) {
+        this.ballTaken = ballTaken;
     }
     public double getVitesse(){
         return this.vitesse;

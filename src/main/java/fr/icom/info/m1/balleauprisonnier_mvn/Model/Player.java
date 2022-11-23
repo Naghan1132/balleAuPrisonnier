@@ -105,6 +105,7 @@ public class Player {
         Projectile ballShooted = this.ball;
         this.setHasBall(false);
         this.setBall(null);
+        ballShooted.setBallIsTaken(false);
         return ballShooted;
     }
 
