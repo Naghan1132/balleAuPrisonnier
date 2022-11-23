@@ -153,15 +153,18 @@ public class Player {
     public void turn(String direc) {
         // Rotation du tir vers la gauche
         if(direc == "left"){
-            if (angle < 90) {
-                angle += 0.3;
+            if (this.angle < 90) {
+                this.angle += 0.3;
             }
         }
         // Rotation du tir vers la droite
         else if(direc == "right"){
-            if (angle > -90) {
-                angle -= 0.3;
+            if (this.angle > -90) {
+                this.angle -= 0.3;
             }
+        }else{
+            //alors c'est un bot qui tire donc =>
+            this.angle = Double.parseDouble(direc);
         }
     }
     public boolean hasBall() {

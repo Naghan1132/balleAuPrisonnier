@@ -1,7 +1,10 @@
 /home/nathan/fac/m1/s1/ConceptionAgile/tp1/src/main/java/fr/icom/info/m1/balleauprisonnier_mvn/Model/Sprite.java
+/home/nathan/fac/m1/s1/ConceptionAgile/tp1/src/main/java/fr/icom/info/m1/balleauprisonnier_mvn/View/StartGUI.java
 /home/nathan/fac/m1/s1/ConceptionAgile/tp1/src/main/java/fr/icom/info/m1/balleauprisonnier_mvn/Model/Player.java
+/home/nathan/fac/m1/s1/ConceptionAgile/tp1/src/main/java/fr/icom/info/m1/balleauprisonnier_mvn/View/WinGUI.java
 /home/nathan/fac/m1/s1/ConceptionAgile/tp1/src/main/java/fr/icom/info/m1/balleauprisonnier_mvn/Model/Bot.java
 /home/nathan/fac/m1/s1/ConceptionAgile/tp1/src/main/java/fr/icom/info/m1/balleauprisonnier_mvn/Controler/Controler.java
 /home/nathan/fac/m1/s1/ConceptionAgile/tp1/src/main/java/fr/icom/info/m1/balleauprisonnier_mvn/Model/Projectile.java
 /home/nathan/fac/m1/s1/ConceptionAgile/tp1/src/main/java/fr/icom/info/m1/balleauprisonnier_mvn/View/App.java
+/home/nathan/fac/m1/s1/ConceptionAgile/tp1/src/main/java/fr/icom/info/m1/balleauprisonnier_mvn/Model/Singleton.java
 /home/nathan/fac/m1/s1/ConceptionAgile/tp1/src/main/java/fr/icom/info/m1/balleauprisonnier_mvn/Model/Field.java

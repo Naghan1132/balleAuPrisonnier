@@ -34,8 +34,8 @@ public class App extends Application {
         séparer la vue du model pour le main, créer classe GUI...
         (voir projet l3 s1 méthodeProg CC2)
 
-        Pattern a utiliser  : Behavioral patterns => Strategy (simple)
-                            : Creational patterns => Singleton Java classe Field  (voir tp python)
+        Pattern a utiliser  : Behavioral patterns => Strategy (simple => voir CC de licence)
+                            : Creational patterns => Singleton Java classe Field  (voir tp python) OK
          */
         /*
          TODO : - régler le problème du fillRect de la fenetre !!!! ou tester sur machine fac
