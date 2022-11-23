@@ -21,7 +21,6 @@ public class Bot extends Player {
         //choisir le meilleur angle pour tirer là où il y a un joueur OK
         this.angle = chooseBestAngle(); // enemis a droite donc on mets moins
         this.ball.setAngle(this.angle);
-        //setTurn(this.angle);
         Projectile ballShooted = this.ball;
         this.setHasBall(false);
         this.setBall(null);
@@ -94,15 +93,10 @@ public class Bot extends Player {
         }
         if (rand.nextBoolean()) {
             super.turn("left");
-        } else {
-            super.turn("right");
         }
     }
 
-    public void setTurn(double angle) {
-        String str = String.format("%d", angle);
-        this.turn(str);
-    }
+
 
 
     @Override

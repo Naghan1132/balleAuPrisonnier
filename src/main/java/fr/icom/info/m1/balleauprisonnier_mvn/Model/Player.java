@@ -162,9 +162,6 @@ public class Player {
             if (this.angle > -90) {
                 this.angle -= 0.3;
             }
-        }else{
-            //alors c'est un bot qui tire donc =>
-            this.angle = Double.parseDouble(direc);
         }
     }
     public boolean hasBall() {
