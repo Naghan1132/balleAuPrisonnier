@@ -99,10 +99,10 @@ public class Controler {
                     {
                         joueurs[i].turn("right");
                     }
-                    if (joueurs[i].getSide() == "top" && input.contains("SPACE") && joueurs[i].hasBall()){
+                    if (joueurs[i].getSide() == "top" && input.contains("SPACE") && joueurs[i].hasBall() && !joueurs[i].isBot){
                         this.ball = joueurs[i].shoot();
                     }
-                    if (joueurs[i].getSide() == "bottom" && input.contains("ENTER") && joueurs[i].hasBall()){
+                    if (joueurs[i].getSide() == "bottom" && input.contains("ENTER") && joueurs[i].hasBall() && !joueurs[i].isBot){
                         this.ball = joueurs[i].shoot();
                     }
                     if (this.ball != null) {
