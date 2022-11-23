@@ -63,20 +63,20 @@ public class Controler {
                 // Deplacement et affichage des joueurs
                 for (int i = 0; i < joueurs.length; i++)
                 {
-
                     //System.out.println(joueurs[2].getY());
                     //System.out.println(this.ball.getY());
+                    /*
+                    // test récupérage de balle
                     if((int)this.ball.getY() == (int)(joueurs[i].getY()) && (int)this.ball.getX() == (int)joueurs[i].getX() && !this.ball.isBallTaken()){
                         // si un joueur est sur la balle il la prends
                         joueurs[i].setHasBall(true);
                         joueurs[i].createBall();
                         this.ball = joueurs[i].getBall();
                         this.ball.setBallIsTaken(true);
-
-                    }
+                    }*/
                     if(joueurs[i].isBot){
                         joueurs[i].move("bot");
-                        //joueurs[i].turn("bot");
+                        //joueurs[i].turn("bot"); //pas réellement besoin
                     }
                     if(joueurs[i].isBot && joueurs[i].hasBall()){
                         this.ball = joueurs[i].shoot();

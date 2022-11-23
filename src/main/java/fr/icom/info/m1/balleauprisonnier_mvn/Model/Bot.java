@@ -29,6 +29,7 @@ public class Bot extends Player {
     }
 
     public double chooseBestAngle() {
+        // MARCHE POUR  LES BOTS DU HAUT !! (à voir avec ceux du bas si correction bug affichage=
         //faire trigo :
         Random random = new Random();
         int indiceTarget= random.nextInt(2 - 0 + 1) + 0;
@@ -68,7 +69,7 @@ public class Bot extends Player {
             double bestAngle = Math.acos(prodscal / (NormeU * NormeV)) * 180 / Math.PI;
             System.out.println("meilleur angle : " + bestAngle);
 
-            //tester si enemie a droite ou a gauche de lui - ou + :
+            //tester si enemi a droite ou a gauche de lui - ou + :
             if(coordTarget[0] > coordBot[0]){
                 // a droite ou devant : (-)
                 return -bestAngle;
@@ -77,22 +78,16 @@ public class Bot extends Player {
             }
         }
 
-        System.out.println("x : " + this.x + ", y :" + this.y);
-        for (int i = 0; i < this.equipeAdverse.length; i++) {
-            System.out.println("x : " + equipeAdverse[i].getX() + ", y :" + equipeAdverse[i].getY());
-
-        }
         return 0.0;
     }
 
     @Override
     public void turn(String direc) {
         Random rand = new Random();
-        if (direc != "left" || direc !="right"){
-            super.turn("left");
-        }
         if (rand.nextBoolean()) {
             super.turn("left");
+        }else{
+            super.turn("right");
         }
     }
 
