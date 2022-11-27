@@ -60,7 +60,7 @@ public class App extends Application {
                 - faire des obstacles
                 - plusieurs vues :  une présentant le terrain (OK)
                                     une autre présentant le score (win GUI)
-                                    une autre les contrôles du jeu OK
+                                    une autre les contrôles du jeu (OK)
 
 
          */

@@ -81,6 +81,32 @@ public class Field extends Canvas {
 	public GraphicsContext getGc(){
 		return this.gc;
 	}
+	public boolean equipe1Won(){
+		Integer cptDead = 0;
+		for(Player p : this.equipe2){
+			if(p.isDead){
+				cptDead += 1;
+			}
+		}
+		if(cptDead == 3){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public boolean equipe2Won(){
+		Integer cptDead = 0;
+		for(Player p : this.equipe1){
+			if(p.isDead){
+				cptDead += 1;
+			}
+		}
+		if(cptDead == 3){
+			return true;
+		}else{
+			return false;
+		}
+	}
 
 	public static Field getInstance(){
 		if(instance == null){

@@ -60,6 +60,12 @@ public class Controler {
                 gc.setFill(Color.LIGHTGRAY);
                 gc.fillRect(0, 0, width, height);
 
+                if(field.equipe1Won()){
+                    //on affiche la fenetre de fin
+                }
+                if (field.equipe2Won()){
+                    //on affiche la fenetre de fin
+                }
                 // Deplacement et affichage des joueurs
                 for (int i = 0; i < joueurs.length; i++)
                 {
