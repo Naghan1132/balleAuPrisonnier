@@ -5,6 +5,7 @@ import fr.icom.info.m1.balleauprisonnier_mvn.Controler.Controler;
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.Field;
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.Projectile;
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.Singleton;
+import fr.icom.info.m1.balleauprisonnier_mvn.Model.Strategy1;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -63,6 +64,9 @@ public class App extends Application {
         //Field gameField = Field.getInstance();
         Singleton singleField = Singleton.getInstance();
         Field gameField = singleField.gameField;
+
+        new Strategy1(gameField);
+
         new Controler();
         root.getChildren().add(gameField);
         root.getChildren().add(gameField.getJoueurs()[0].getSprite());

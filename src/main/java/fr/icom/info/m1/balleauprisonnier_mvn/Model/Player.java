@@ -73,7 +73,7 @@ public class Player {
         //step = randomGenerator.nextFloat();
 
         // Pour commencer les joueurs ont une vitesse / un pas fixe
-        step = 0.4;
+        //step = 0.4; //mit dans Strategy
 
     }
 
@@ -197,5 +197,8 @@ public class Player {
 
     public String getSide(){
         return this.side;
+    }
+    public void setStep(double step){
+        this.step = step;
     }
 }

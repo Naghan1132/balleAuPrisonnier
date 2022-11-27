@@ -13,9 +13,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 
 /**
- * Classe gerant le terrain de jeu.
+ * Classe du terrain de jeu.
  * 
  */
+
 public class Field extends Canvas {
 
 	private static Field instance;
@@ -47,15 +48,10 @@ public class Field extends Canvas {
 		/** permet de capturer le focus et donc les evenements clavier et souris */
 		this.setFocusTraversable(true);
 
-		gc = this.getGraphicsContext2D();
+		this.gc = this.getGraphicsContext2D();
+	}
 
-		/** On initialise le terrain de jeu */
-		equipe1[0] = new Player(gc, colorMap[0], w / 2, h - 70, "bottom");
-		equipe1[1] = new Bot(gc, colorMap[0], w - 400, h - 70, "bottom",equipe2);
-		equipe1[2] = new Bot(gc, colorMap[0], w - 200, h - 70, "bottom",equipe2);
-		equipe2[0] = new Player(gc, colorMap[1], w / 2, 15, "top");
-		equipe2[1] = new Bot(gc, colorMap[1], w - 400, 15, "top",equipe1);
-		equipe2[2] = new Bot(gc, colorMap[1], w - 200, 15, "top",equipe1);
+	public void setField(){
 
 		int len1 = equipe1.length;
 		int len2 = equipe2.length;
@@ -66,13 +62,6 @@ public class Field extends Canvas {
 		for (int i = 0; i < joueurs.length; i++) {
 			joueurs[i].display(); // on affiche tous les joueurs
 		}
-
-		joueurs[5].setHasBall(true);
-		joueurs[5].createBall();
-		ball = joueurs[5].getBall();
-
-		//si la balle touche le sol (personne) alors un joueur doit la 'ramasser'
-		//si la balle touche qql il meurt
 	}
 
 	public Player[] getJoueurs() {
