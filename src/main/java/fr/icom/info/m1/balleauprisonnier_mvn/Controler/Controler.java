@@ -127,6 +127,8 @@ public class Controler {
                 }
             }
         }.start(); // On lance la boucle de rafraichissement
-
     }
+    //public Player pickUpBall(){
+      //  bal
+    //}
 }

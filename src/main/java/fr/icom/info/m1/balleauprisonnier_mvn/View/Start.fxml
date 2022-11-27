@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.icom.info.m1.balleauprisonnier_mvn.View.App">
+   <children>
+      <Label layoutX="186.0" layoutY="41.0" prefHeight="47.0" prefWidth="229.0" text="BALLE AU PRISONNIER">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Label layoutX="260.0" layoutY="94.0" prefHeight="19.0" prefWidth="82.0" text="Controles">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <Button layoutX="263.0" layoutY="319.0" mnemonicParsing="false" onAction="#setUp" text="START">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+      <Label layoutX="108.0" layoutY="166.0" prefHeight="36.0" prefWidth="129.0" text="Joueur du haut :">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="108.0" layoutY="211.0" prefHeight="19.0" prefWidth="119.0" text="Joueur du bas : ">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="108.0" layoutY="126.0" prefHeight="16.0" prefWidth="239.0" text="BOUGER JOUEURS / DIRECTION TIRS" textFill="#4040d3" />
+      <Label layoutX="365.0" layoutY="126.0" text="TIRER" textFill="#dd1f1f" />
+      <Label layoutX="265.0" layoutY="174.0" prefHeight="19.0" prefWidth="44.0" text="ZQSD" textFill="#4040d3">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="336.0" layoutY="174.0" text="ESPACE" textFill="#dd1f1f">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="245.0" layoutY="213.0" text="FLECHES DIRECTIONELLES" textFill="#4040d3" />
+      <Label layoutX="432.0" layoutY="211.0" text="ENTER" textFill="#dd1f1f">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -2,16 +2,25 @@ package fr.icom.info.m1.balleauprisonnier_mvn.View;
 
 
 import fr.icom.info.m1.balleauprisonnier_mvn.Controler.Controler;
+import fr.icom.info.m1.balleauprisonnier_mvn.Controler.SceneControler;
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.Field;
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.Projectile;
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.Singleton;
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.Strategy1;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 
 /**
  * Classe principale de l'application
@@ -28,35 +37,54 @@ public class App extends Application {
      */
     @Override
     public void start(Stage stage) throws Exception {
+        try {
+            //Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Start.fxml")); //error
+            URL url = new File("src/main/java/fr/icom/info/m1/balleauprisonnier_mvn/View/Start.fxml").toURI().toURL();
+            Parent root = FXMLLoader.load(url);
+            Scene scene = new Scene(root);
+
+            stage.setScene(scene);
+            stage.show();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         //new StartGUI().start();
         //Rectangle rect = new Rectangle(100,100);
         // faire new pane et test si on appuie sur le rectangle start => commencer la partie
         /*
-        séparer la vue du model pour le main, créer classe GUI...
-        (voir projet l3 s1 méthodeProg CC2)
 
-        Pattern a utiliser  : Behavioral patterns => Strategy (simple => voir CC de licence)
+        Pattern a utiliser  : Behavioral patterns => Strategy (simple => voir CC de licence) OK
                                 (avec obstables différents endroits, vitesse différentes etc...)
                             : Creational patterns => Singleton Java classe Field  (voir tp python) OK
          */
         /*
-         TODO : - régler le problème du fillRect de la fenetre !!!! ou tester sur machine fac
-                - faire colisions balle/joueurs (mais galère de test sans le fillRect)
+         TODO : - faire colisions balle/joueurs
                 - shot des bots avec IA OK
-                - desing paterns (singleton fait !)
+                - desing paterns (singleton et strategy fait !)
                 - faire des obstacles
                 - plusieurs vues :  une présentant le terrain (OK)
-                                    une autre présentant le score (a faire)
-                                    une autre les contrôles du jeu (
+                                    une autre présentant le score (win GUI)
+                                    une autre les contrôles du jeu (start GUI)
 
 
          */
-        // Nom de la fenetre
 
+
+
+    }
+
+    public void setUp(ActionEvent event) throws IOException{
+        //Parent root = FXMLLoader.load(getClass().getResource("Start.fxml"));
+        Group root = new Group();
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+
+        // Nom de la fenetre
+        //stage = new Stage();
         stage.setTitle("Balle Au Prisonnier");
         stage.getIcons().add(new Image("assets/ball.png")); // icon du jeu
 
-        Group root = new Group();
+
         Scene scene = new Scene(root);
 
         // On cree le terrain de jeu et on l'ajoute a la racine de la scene
@@ -68,6 +96,7 @@ public class App extends Application {
         new Strategy1(gameField);
 
         new Controler();
+
         root.getChildren().add(gameField);
         root.getChildren().add(gameField.getJoueurs()[0].getSprite());
         root.getChildren().add(gameField.getJoueurs()[1].getSprite());
@@ -80,11 +109,9 @@ public class App extends Application {
 
         stage.setScene(scene);
         stage.show();
-
-
     }
 
-    public static void main(String[] args) {
+        public static void main(String[] args) {
         Application.launch(args);
     }
 }
