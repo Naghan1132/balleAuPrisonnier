@@ -46,9 +46,7 @@ public class App extends Application {
         }catch (Exception e){
             e.printStackTrace();
         }
-        //new StartGUI().start();
-        //Rectangle rect = new Rectangle(100,100);
-        // faire new pane et test si on appuie sur le rectangle start => commencer la partie
+
         /*
 
         Pattern a utiliser  : Behavioral patterns => Strategy (simple => voir CC de licence) OK
@@ -62,7 +60,7 @@ public class App extends Application {
                 - faire des obstacles
                 - plusieurs vues :  une présentant le terrain (OK)
                                     une autre présentant le score (win GUI)
-                                    une autre les contrôles du jeu (start GUI)
+                                    une autre les contrôles du jeu OK
 
 
          */
