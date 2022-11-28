@@ -84,7 +84,12 @@ public class Player{
         }
         graphicsContext.restore(); // back to original state (before rotation)
         if(this.ball != null){
-            this.ball.reset(this.x,this.y,this.angle);
+            if(this.getSide()=="top"){
+                this.ball.reset(this.x+10,this.y+50,this.angle);
+            }else{
+                this.ball.reset(this.x+10,this.y,this.angle);
+            }
+
         }
     }
 
@@ -126,19 +131,11 @@ public class Player{
             if (x < 520) {
                 spriteAnimate();
                 x += step;
-                if(this.hasBall){
-                    this.ball.setX(x);
-                    this.ball.setY(y+5);
-                }
             }
         }else if(direc == "left"){
             if (x > 10) {
                 spriteAnimate();
                 x -= step;
-                if(this.hasBall){
-                    this.ball.setX(x);
-                    this.ball.setY(y+5);
-                }
             }
         }
     }
@@ -177,6 +174,12 @@ public class Player{
     public void createBall(){
         ball = new Projectile(this.graphicsContext,this.side,this.x,this.y,this.angle);
         this.setBall(ball);
+    }
+    public void setIsDead(boolean dead){
+        this.isDead = dead;
+    }
+    public boolean getIsDead(){
+        return this.isDead;
     }
 
     public Sprite getSprite(){

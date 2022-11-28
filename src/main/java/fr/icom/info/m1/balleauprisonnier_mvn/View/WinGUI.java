@@ -19,7 +19,22 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
-public class WinGUI{
 
+public class WinGUI extends Application {
 
+    @Override
+    public void start(Stage stage) throws Exception {
+        try {
+            //Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("Start.fxml")); //error
+            URL url = new File("src/main/java/fr/icom/info/m1/balleauprisonnier_mvn/View/Win.fxml").toURI().toURL();
+            Parent root = FXMLLoader.load(url);
+            Scene scene = new Scene(root);
+
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

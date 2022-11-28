@@ -72,84 +72,95 @@ public class Controler {
                 }
                 // Deplacement et affichage des joueurs
                 for (int i = 0; i < joueurs.length; i++) {
-                    // Pour ramassage de balle OK
-                    if (ball.getVitesse() == 0) {
-                        ArrayList<Integer> intervalle = new ArrayList<Integer>();
-                        for (double x = ball.getX(); x < ball.getX() - ball.getSprite().getTailleImage(); x--) {
+
+                    if (!joueurs[i].getIsDead()) { //si le joueur est mort il ne peut rien faire
+
+                        if (ball.getVitesse() != 0) {
+
+                            int[][] listeCoordBalle = new int[1][];
+                            int[] vector = new int[2];
+                            // balle en mouvement on test si un joueur est touché
+
+                        } else {
+                            // Pour ramassage de balle OK
+                            ArrayList<Integer> intervalle = new ArrayList<Integer>();
+                            //for (double x = ball.getX(); x < ball.getX() - ball.getSprite().getTailleImage(); x--) {
                             //int valeurArrondieBalle = (int) x;
                             //intervalle.add(valeurArrondieBalle);
-                        }
-                        for (double x = ball.getX(); x < ball.getX() + ball.getSprite().getTailleImage(); x++) {
-                            int valeurArrondieBalle = (int) x;
-                            intervalle.add(valeurArrondieBalle);
-                        }
-                        if (ball.getY() >= 300) {
-                            //seuls les joueurs botom peuvent la prendre
-                            if (joueurs[i].getSide() == "bottom") {
-                                int valeurArrondieJoueur = (int) joueurs[i].getX();
-                                if (intervalle.contains(valeurArrondieJoueur)) {
-                                    joueurs[i].setHasBall(true);
-                                    joueurs[i].createBall();
-                                    this.ball = joueurs[i].getBall();
+                            //}
+                            for (double x = ball.getX(); x < ball.getX() + ball.getSprite().getTailleImage(); x++) {
+                                int valeurArrondieBalle = (int) x;
+                                intervalle.add(valeurArrondieBalle);
+                            }
+                            if (ball.getY() >= 300) {
+                                //seuls les joueurs botom peuvent la prendre
+                                if (joueurs[i].getSide() == "bottom") {
+                                    int valeurArrondieJoueur = (int) joueurs[i].getX();
+                                    if (intervalle.contains(valeurArrondieJoueur)) {
+                                        joueurs[i].setHasBall(true);
+                                        joueurs[i].createBall();
+                                        this.ball = joueurs[i].getBall();
+                                    }
+                                }
+                            } else {
+                                // < 400
+                                //seuls les joueurs top peuvent la prendre
+                                if (joueurs[i].getSide() == "top") {
+                                    int valeurArrondieJoueur = (int) joueurs[i].getX();
+                                    if (intervalle.contains(valeurArrondieJoueur)) {
+                                        joueurs[i].setHasBall(true);
+                                        joueurs[i].createBall();
+                                        this.ball = joueurs[i].getBall();
+                                    }
                                 }
                             }
-                        } else {
-                            // < 400
-                            //seuls les joueurs top peuvent la prendre
-                            if (joueurs[i].getSide() == "top") {
-                                int valeurArrondieJoueur = (int) joueurs[i].getX();
-                                if (intervalle.contains(valeurArrondieJoueur)) {
-                                    joueurs[i].setHasBall(true);
-                                    joueurs[i].createBall();
-                                    this.ball = joueurs[i].getBall();
-                                }
-                            }
                         }
-                    }
-                    if (joueurs[i].isBot) {
-                        joueurs[i].move("bot");
-                        //joueurs[i].turn("bot"); //pas réellement besoin
-                    }
-                    if (joueurs[i].isBot && joueurs[i].hasBall()) {
-                        this.ball = joueurs[i].shoot();
-                    }
-                    if (joueurs[i].getSide() == "bottom" && input.contains("LEFT") && !joueurs[i].isBot) {
-                        joueurs[i].move("left");
-                    }
-                    if (joueurs[i].getSide() == "bottom" && input.contains("RIGHT") && !joueurs[i].isBot) {
-                        joueurs[i].move("right");
-                    }
-                    if (joueurs[i].getSide() == "bottom" && input.contains("UP")) {
-                        joueurs[i].turn("left");
-                    }
-                    if (joueurs[i].getSide() == "bottom" && input.contains("DOWN") && !joueurs[i].isBot) {
-                        joueurs[i].turn("right");
-                    }
-                    if (joueurs[i].getSide() == "top" && input.contains("Q") && !joueurs[i].isBot) {
-                        joueurs[i].move("left");
-                    }
-                    if (joueurs[i].getSide() == "top" && input.contains("D") && !joueurs[i].isBot) {
-                        joueurs[i].move("right");
-                    }
-                    if (joueurs[i].getSide() == "top" && input.contains("Z") && !joueurs[i].isBot) {
-                        joueurs[i].turn("left");
-                    }
-                    if (joueurs[i].getSide() == "top" && input.contains("S") && !joueurs[i].isBot) {
-                        joueurs[i].turn("right");
-                    }
-                    if (joueurs[i].getSide() == "top" && input.contains("SPACE") && joueurs[i].hasBall() && !joueurs[i].isBot) {
-                        this.ball = joueurs[i].shoot();
-                    }
-                    if (joueurs[i].getSide() == "bottom" && input.contains("ENTER") && joueurs[i].hasBall() && !joueurs[i].isBot) {
 
-                        this.ball = joueurs[i].shoot();
+                        if (joueurs[i].isBot) {
+                            joueurs[i].move("bot");
+                            //joueurs[i].turn("bot"); //pas réellement besoin
+                        }
+                        if (joueurs[i].isBot && joueurs[i].hasBall()) {
+                            this.ball = joueurs[i].shoot();
+                        }
+                        if (joueurs[i].getSide() == "bottom" && input.contains("LEFT") && !joueurs[i].isBot) {
+                            joueurs[i].move("left");
+                        }
+                        if (joueurs[i].getSide() == "bottom" && input.contains("RIGHT") && !joueurs[i].isBot) {
+                            joueurs[i].move("right");
+                        }
+                        if (joueurs[i].getSide() == "bottom" && input.contains("UP")) {
+                            joueurs[i].turn("left");
+                        }
+                        if (joueurs[i].getSide() == "bottom" && input.contains("DOWN") && !joueurs[i].isBot) {
+                            joueurs[i].turn("right");
+                        }
+                        if (joueurs[i].getSide() == "top" && input.contains("Q") && !joueurs[i].isBot) {
+                            joueurs[i].move("left");
+                        }
+                        if (joueurs[i].getSide() == "top" && input.contains("D") && !joueurs[i].isBot) {
+                            joueurs[i].move("right");
+                        }
+                        if (joueurs[i].getSide() == "top" && input.contains("Z") && !joueurs[i].isBot) {
+                            joueurs[i].turn("left");
+                        }
+                        if (joueurs[i].getSide() == "top" && input.contains("S") && !joueurs[i].isBot) {
+                            joueurs[i].turn("right");
+                        }
+                        if (joueurs[i].getSide() == "top" && input.contains("SPACE") && joueurs[i].hasBall() && !joueurs[i].isBot) {
+                            this.ball = joueurs[i].shoot();
+                        }
+                        if (joueurs[i].getSide() == "bottom" && input.contains("ENTER") && joueurs[i].hasBall() && !joueurs[i].isBot) {
 
-                    }
-                    if (this.ball != null) {
-                        this.ball.display();
-                    }
+                            this.ball = joueurs[i].shoot();
 
-                    joueurs[i].display();
+                        }
+                        if (this.ball != null) {
+                            this.ball.display();
+                        }
+
+                        joueurs[i].display();
+                    }
                 }
             }
         }.start(); // On lance la boucle de rafraichissement

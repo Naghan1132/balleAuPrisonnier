@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="fr.icom.info.m1.balleauprisonnier_mvn.View.WinGUI"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.icom.info.m1.balleauprisonnier_mvn.View.App">
+   <children>
+      <Button layoutX="261.0" layoutY="262.0" mnemonicParsing="false" onAction="#setUp" text="RESTART" />
+      <Label layoutX="198.0" layoutY="175.0" text="ÉQUIPE x A GAGNÉE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </children>
 </AnchorPane>
