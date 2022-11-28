@@ -30,7 +30,7 @@ public class App extends Application {
      * <p>
      * On cree le SceneGraph de l'application ici
      *
-     * @see //http://docs.oracle.com/javafx/2/scenegraph/jfxpub-scenegraph.htm
+     * @see //http://docs.oracle.com/javafx/2/scenegraph/jfxpub-scenegraph.html
      */
     @Override
     public void start(Stage stage) throws Exception {
@@ -52,6 +52,8 @@ public class App extends Application {
         Pattern a utiliser  : Behavioral patterns => Strategy (simple => voir CC de licence) OK
                                 (avec obstables différents endroits, vitesse différentes etc...)
                             : Creational patterns => Singleton Java classe Field  (voir tp python) OK
+                            : https://refactoring.guru/fr/design-patterns/abstract-factory
+                              Abstract Factory A faire
          */
         /*
          TODO : - faire colisions balle/joueurs
@@ -70,12 +72,10 @@ public class App extends Application {
     }
 
     public void setUp(ActionEvent event) throws IOException{
-        //Parent root = FXMLLoader.load(getClass().getResource("Start.fxml"));
         Group root = new Group();
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 
         // Nom de la fenetre
-        //stage = new Stage();
         stage.setTitle("Balle Au Prisonnier");
         stage.getIcons().add(new Image("assets/ball.png")); // icon du jeu
 

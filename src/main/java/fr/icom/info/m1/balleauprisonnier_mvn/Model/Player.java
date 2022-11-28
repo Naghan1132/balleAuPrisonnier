@@ -6,12 +6,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
-import java.util.Random;
-
 /**
  * Classe gerant un joueur
  */
-public class Player {
+public class Player{
     public boolean isBot;
     boolean isDead = false;
     boolean hasBall = false;
@@ -65,16 +63,7 @@ public class Player {
         this.sprite.setX(x);
         this.sprite.setY(y);
 
-
         //directionArrow = sprite.getClip().;
-
-        //Tous les joueurs ont une vitesse aleatoire entre 0.0 et 1.0
-        //Random randomGenerator = new Random();
-        //step = randomGenerator.nextFloat();
-
-        // Pour commencer les joueurs ont une vitesse / un pas fixe
-        //step = 0.4; //mit dans Strategy
-
     }
 
 

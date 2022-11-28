@@ -5,7 +5,7 @@ import javafx.scene.canvas.GraphicsContext;
 import java.lang.Math;
 import java.util.Random;
 
-public class Bot extends Player {
+public class Bot extends Player{
     Player[] equipeAdverse;
 
     public Bot(GraphicsContext gc, String color, int xInit, int yInit, String side, Player[] equipeAdverse) {
