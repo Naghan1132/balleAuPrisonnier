@@ -32,7 +32,7 @@ public class Field extends Canvas {
     final GraphicsContext gc;
     final int width;
     final int height;
-	Projectile ball;
+	public Projectile ball;
     
     /**
      * Canvas dans lequel on va dessiner le jeu.

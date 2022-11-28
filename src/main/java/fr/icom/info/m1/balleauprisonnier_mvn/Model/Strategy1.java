@@ -20,9 +20,9 @@ public class Strategy1 extends Strategy{
         equipe2[2] = new Bot(gc, colorMap[1], w - 200, 15, "top",equipe1);
         gamefield.setField();
 
-        joueurs[0].setHasBall(true);
-        joueurs[0].createBall();
-        gamefield.ball = joueurs[0].getBall();
+        joueurs[3].setHasBall(true);
+        joueurs[3].createBall();
+        gamefield.ball = joueurs[3].getBall();
     }
 
     @Override

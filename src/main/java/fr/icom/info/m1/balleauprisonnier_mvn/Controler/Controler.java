@@ -9,6 +9,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.input.KeyEvent;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Controler {
 
@@ -69,6 +71,45 @@ public class Controler {
                 // Deplacement et affichage des joueurs
                 for (int i = 0; i < joueurs.length; i++)
                 {
+
+                    // Pour ramassage de balle OK
+                    if(ball.getVitesse()==0){
+                        ArrayList<Integer> intervalle = new ArrayList<Integer>();
+                        for (double x=ball.getX();x<ball.getX()-ball.getSprite().getTailleImage();x--){
+                            //int valeurArrondieBalle = (int) x;
+                            //intervalle.add(valeurArrondieBalle);
+                        }
+                        for (double x=ball.getX();x<ball.getX()+ball.getSprite().getTailleImage();x++){
+                            int valeurArrondieBalle = (int) x;
+                            intervalle.add(valeurArrondieBalle);
+                        }
+                        if(ball.getY() >= 300){
+                            //les joueurs botom peuvent la prendre
+                            if(joueurs[i].getSide() == "bottom"){
+                                int valeurArrondieJoueur = (int) joueurs[i].getX();
+                                if(intervalle.contains(valeurArrondieJoueur)) {
+                                    joueurs[i].setHasBall(true);
+                                    joueurs[i].createBall();
+                                    this.ball = joueurs[i].getBall();
+                                }
+                            }
+                        }else{
+                            // < 400
+                            //les joueurs top peuvent la prendre
+                            if(joueurs[i].getSide() == "top"){
+                                int valeurArrondieJoueur = (int) joueurs[i].getX();
+                                if(intervalle.contains(valeurArrondieJoueur)) {
+                                    joueurs[i].setHasBall(true);
+                                    joueurs[i].createBall();
+                                    this.ball = joueurs[i].getBall();
+                                }
+                            }
+
+                        }
+
+
+
+                    }
                     //System.out.println(joueurs[2].getY());
                     //System.out.println(this.ball.getY());
                     /*

@@ -17,6 +17,7 @@ public class Bot extends Player{
 
     @Override
     public Projectile shoot() {
+        //Mettre un timer sinon il tire directement
 
         //choisir le meilleur angle pour tirer là où il y a un joueur OK
         this.angle = chooseBestAngle(); // enemis a droite donc on mets moins
