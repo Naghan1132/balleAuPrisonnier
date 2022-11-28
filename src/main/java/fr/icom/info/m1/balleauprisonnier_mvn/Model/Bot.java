@@ -1,6 +1,7 @@
 package fr.icom.info.m1.balleauprisonnier_mvn.Model;
 
 import javafx.scene.canvas.GraphicsContext;
+import java.util.concurrent.TimeUnit;
 
 import java.lang.Math;
 import java.util.Random;
@@ -14,9 +15,8 @@ public class Bot extends Player{
         this.step = 0.4;
         this.equipeAdverse = equipeAdverse; // pour l'IA
     }
-
     @Override
-    public Projectile shoot() {
+    public Projectile shoot(){
         //Mettre un timer sinon il tire directement
 
         //choisir le meilleur angle pour tirer là où il y a un joueur OK
@@ -68,7 +68,7 @@ public class Bot extends Player{
             double NormeV = Math.sqrt(Math.pow(vectV[0], 2) + Math.pow(vectV[1], 2));
 
             double bestAngle = Math.acos(prodscal / (NormeU * NormeV)) * 180 / Math.PI;
-            System.out.println("meilleur angle : " + bestAngle);
+            //System.out.println("meilleur angle : " + bestAngle);
 
             //tester si enemi a droite ou a gauche de lui - ou + :
             if(coordTarget[0] > coordBot[0]){

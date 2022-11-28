@@ -164,7 +164,9 @@ public class Controler {
                         this.ball = joueurs[i].shoot();
                     }
                     if (joueurs[i].getSide() == "bottom" && input.contains("ENTER") && joueurs[i].hasBall() && !joueurs[i].isBot){
+
                         this.ball = joueurs[i].shoot();
+
                     }
                     if (this.ball != null) {
                         this.ball.display();
