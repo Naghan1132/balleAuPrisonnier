@@ -74,8 +74,14 @@ public class Player{
     public void display() {
         //affiche la fleche
         graphicsContext.save(); // saves the current state on stack, including the current transform
-        rotate(graphicsContext, angle, x + directionArrow.getWidth() / 2, y + directionArrow.getHeight() / 2);
-        graphicsContext.drawImage(directionArrow, x, y);
+
+        if(this.getSide()=="top"){
+            rotate(graphicsContext, angle, x + directionArrow.getWidth() / 2, y + directionArrow.getHeight() / 2);
+            graphicsContext.drawImage(directionArrow, x, y);
+        }else{
+            rotate(graphicsContext, angle, x + directionArrow.getWidth() / 2, y + directionArrow.getHeight() / 6);
+            graphicsContext.drawImage(directionArrow, x, y-50);
+        }
         graphicsContext.restore(); // back to original state (before rotation)
         if(this.ball != null){
             this.ball.reset(this.x,this.y,this.angle);

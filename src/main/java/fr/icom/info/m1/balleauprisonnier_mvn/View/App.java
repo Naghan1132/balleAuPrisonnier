@@ -57,9 +57,10 @@ public class App extends Application {
          */
         /*
          TODO : - faire colisions balle/joueurs
-                - shot des bots avec IA OK
+                - les bots doivent se diriger vers la balle si elle est au sol
+                - mettre un timer sur le tirs des bots ?
                 - desing paterns (singleton et strategy fait !)
-                - faire des obstacles
+                - faire des obstacles (si le temps)
                 - plusieurs vues :  une présentant le terrain (OK)
                                     une autre présentant le score (win GUI)
                                     une autre les contrôles du jeu (OK)

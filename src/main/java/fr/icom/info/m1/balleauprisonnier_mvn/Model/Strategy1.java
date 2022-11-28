@@ -27,7 +27,7 @@ public class Strategy1 extends Strategy{
 
     @Override
     public void setBallSpeed() {
-        gamefield.ball.setVitesse(0.2);
+        gamefield.ball.setVitesse(0.1);
     }
 
     @Override
@@ -36,10 +36,11 @@ public class Strategy1 extends Strategy{
             //Tous les joueurs ont une vitesse aleatoire entre 0.0 et 1.0
             double step = 0.0;
             if (joueurs[i].isBot){
-                Random randomGenerator = new Random();
-                step = randomGenerator.nextFloat();
+                //Random randomGenerator = new Random();
+                //step = randomGenerator.nextFloat();
+                step = 0.2;
             }else{
-                step = 0.4;
+                step = 0.2;
             }
             joueurs[i].setStep(step);
         }
