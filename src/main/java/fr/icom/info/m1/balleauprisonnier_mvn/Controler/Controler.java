@@ -83,17 +83,6 @@ public class Controler {
                             if (ball.getShootedFrom() == "top") {
                                 if (joueurs[i].getSide() == "bottom") {
                                     if (ball.getY() > 400) {
-                                        //System.out.println("y :"+joueurs[0].getY()); //500
-                                        //y_joueur = [500, 500+50] ?
-                                        //x_joueur = [joueur.get(x), + joueur.get(x)+30]
-
-                                        //List<Point2D> coordJoueur = new ArrayList<Point2D>();
-                                        //List<Point2D> coordBall = new ArrayList<Point2D>();
-                                        //int valeurArrondieBalleX = (int) ball.getX();
-                                        //int valeurArrondieBalleY = (int) ball.getY();
-                                        //Point2D testBalle = new Point2D.Double(valeurArrondieBalleX,valeurArrondieBalleY);
-
-
                                         ArrayList<Integer> xJoueur = new ArrayList<Integer>();
                                         ArrayList<Integer> yJoueur = new ArrayList<Integer>();
                                         // HITBOX :
@@ -116,16 +105,46 @@ public class Controler {
                                             int valeurArrondieBalle = (int) y;
                                             yBalle.add(valeurArrondieBalle);
                                         }
-                                        //System.out.println("xJ "+xJoueur);
-                                        //System.out.println("yJ "+yJoueur);
-                                        //System.out.println("xBalle "+xBalle);
-                                        //System.out.println("yBalle "+yBalle);
                                         for (Integer xJ : xJoueur) {
-                                            //System.out.println("test");
                                             if (xBalle.contains(xJ)) {
                                                 for (Integer yJ : yJoueur) {
                                                     if (yBalle.contains(yJ)) {
-                                                        //System.out.println("MORT");
+                                                        joueurs[i].setIsDead(true);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }if(ball.getShootedFrom() == "bottom"){
+                                if (joueurs[i].getSide() == "top") {
+                                    if (ball.getY() < 300) {
+                                        ArrayList<Integer> xJoueur = new ArrayList<Integer>();
+                                        ArrayList<Integer> yJoueur = new ArrayList<Integer>();
+                                        // HITBOX :
+                                        for (double x = joueurs[i].getX(); x < joueurs[i].getX() + 30; x++) {
+                                            int valeurArrondieBalle = (int) x;
+                                            xJoueur.add(valeurArrondieBalle);
+                                        }
+                                        for (double y = joueurs[i].getY(); y < joueurs[i].getY() + 50; y++) {
+                                            // y -- car on est en bas
+                                            int valeurArrondieBalle = (int) y;
+                                            yJoueur.add(valeurArrondieBalle);
+                                        }
+                                        ArrayList<Integer> xBalle = new ArrayList<Integer>();
+                                        ArrayList<Integer> yBalle = new ArrayList<Integer>();
+                                        for (double x = ball.getX(); x < ball.getX() + ball.getSprite().getTailleImage(); x++) {
+                                            int valeurArrondieBalle = (int) x;
+                                            xBalle.add(valeurArrondieBalle);
+                                        }
+                                        for (double y = ball.getY(); y < ball.getY() + ball.getSprite().getTailleImage(); y++) {
+                                            int valeurArrondieBalle = (int) y;
+                                            yBalle.add(valeurArrondieBalle);
+                                        }
+                                        for (Integer xJ : xJoueur) {
+                                            if (xBalle.contains(xJ)) {
+                                                for (Integer yJ : yJoueur) {
+                                                    if (yBalle.contains(yJ)) {
                                                         joueurs[i].setIsDead(true);
                                                     }
                                                 }

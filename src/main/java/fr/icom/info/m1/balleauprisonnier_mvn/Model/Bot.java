@@ -9,13 +9,15 @@ import java.util.Random;
 
 public class Bot extends Player {
     Player[] equipeAdverse;
+    Field field;
 
 
-    public Bot(GraphicsContext gc, String color, int xInit, int yInit, String side, Player[] equipeAdverse) {
+    public Bot(GraphicsContext gc, String color, int xInit, int yInit, String side, Player[] equipeAdverse,Field field) {
         super(gc, color, xInit, yInit, side);
         this.isBot = true;
         this.step = 0.4;
         this.equipeAdverse = equipeAdverse; // pour l'IA
+        this.field = field;
     }
 
     @Override
@@ -26,6 +28,7 @@ public class Bot extends Player {
         this.angle = chooseBestAngle(); // enemis a droite donc on mets moins
         this.ball.setAngle(this.angle);
         Projectile ballShooted = this.ball;
+        this.ball.setShootedFrom(this.getSide());
         this.setHasBall(false);
         this.setBall(null);
         sprite.playShoot();
@@ -38,6 +41,7 @@ public class Bot extends Player {
         Random random = new Random();
         int indiceTarget = random.nextInt(2 - 0 + 1) + 0;
         Player target = equipeAdverse[indiceTarget]; // on prends une cible au hasard
+
 
         // on imagine un triangle rectangle (sommmets = camps adverse,bot,target)
         // on trace une ligne verticale entre le bot qui tire et le camps adverse
@@ -99,12 +103,22 @@ public class Bot extends Player {
     @Override
     public void move(String direc) {
         //aller chercher la balle si elle est dans leurs camps sinon random
-        Random rand = new Random();
-        if (rand.nextBoolean()) {
-            super.move("left");
-        } else {
-            super.move("right");
-        }
 
+        //Début ramassage de balle par les bots
+        if(this.field.getBall().getVitesse() == 0){
+            double xB = this.field.getBall().getX();
+            if(this.x < xB){
+                super.move("right");
+            }else{
+                super.move("left");
+            }
+        }else{
+            Random rand = new Random();
+            if (rand.nextBoolean()) {
+                super.move("left");
+            } else {
+                super.move("right");
+            }
+        }
     }
 }

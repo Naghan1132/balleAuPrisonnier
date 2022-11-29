@@ -37,6 +37,7 @@ public class Field extends Canvas {
     final GraphicsContext gc;
     final int width;
     final int height;
+
     public Projectile ball;
 
     /**
@@ -115,6 +116,14 @@ public class Field extends Canvas {
         } else {
             return false;
         }
+    }
+
+    public Projectile getBall() {
+        return ball;
+    }
+
+    public void setBall(Projectile ball) {
+        this.ball = ball;
     }
 
     public static Field getInstance() {
