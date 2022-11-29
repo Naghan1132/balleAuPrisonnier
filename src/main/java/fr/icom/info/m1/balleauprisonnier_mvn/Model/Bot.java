@@ -9,15 +9,17 @@ import java.util.Random;
 
 public class Bot extends Player {
     Player[] equipeAdverse;
+    Player[] equipeDuBot;
     Field field;
 
 
-    public Bot(GraphicsContext gc, String color, int xInit, int yInit, String side, Player[] equipeAdverse,Field field) {
+    public Bot(GraphicsContext gc, String color, int xInit, int yInit, String side, Player[] equipeAdverse,Player[] equipeDuBot,Field field) {
         super(gc, color, xInit, yInit, side);
         this.isBot = true;
         this.step = 0.4;
         this.equipeAdverse = equipeAdverse; // pour l'IA
         this.field = field;
+        this.equipeDuBot = equipeDuBot;
     }
 
     @Override
@@ -105,7 +107,16 @@ public class Bot extends Player {
         //aller chercher la balle si elle est dans leurs camps sinon random
 
         //Début ramassage de balle par les bots
-        if(this.field.getBall().getVitesse() == 0){
+        //tester si un gars de son équipe à récup la balle
+        boolean ballPicked = false;
+
+        for (Player p : this.equipeDuBot){
+            //System.out.println("has ball = ?"+p.hasBall());
+            if(p.hasBall()){
+                ballPicked = true;
+            }
+        }
+        if(this.field.getBall().getVitesse() == 0 && this.field.getBall().getShootedFrom() != this.getSide()){
             double xB = this.field.getBall().getX();
             if(this.x < xB){
                 super.move("right");

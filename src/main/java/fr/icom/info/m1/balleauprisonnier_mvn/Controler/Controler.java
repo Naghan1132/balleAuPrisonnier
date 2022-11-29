@@ -3,12 +3,15 @@ package fr.icom.info.m1.balleauprisonnier_mvn.Controler;
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.Field;
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.Player;
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.Projectile;
+import fr.icom.info.m1.balleauprisonnier_mvn.Model.Sprite;
 import fr.icom.info.m1.balleauprisonnier_mvn.View.WinGUI;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.input.KeyEvent;
+import javafx.util.Duration;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
@@ -109,6 +112,7 @@ public class Controler {
                                             if (xBalle.contains(xJ)) {
                                                 for (Integer yJ : yJoueur) {
                                                     if (yBalle.contains(yJ)) {
+                                                        //explosion ?
                                                         joueurs[i].setIsDead(true);
                                                     }
                                                 }
@@ -127,7 +131,6 @@ public class Controler {
                                             xJoueur.add(valeurArrondieBalle);
                                         }
                                         for (double y = joueurs[i].getY(); y < joueurs[i].getY() + 50; y++) {
-                                            // y -- car on est en bas
                                             int valeurArrondieBalle = (int) y;
                                             yJoueur.add(valeurArrondieBalle);
                                         }
@@ -145,6 +148,7 @@ public class Controler {
                                             if (xBalle.contains(xJ)) {
                                                 for (Integer yJ : yJoueur) {
                                                     if (yBalle.contains(yJ)) {
+                                                        //explosion ?
                                                         joueurs[i].setIsDead(true);
                                                     }
                                                 }
@@ -193,7 +197,7 @@ public class Controler {
                         }
                         if (joueurs[i].isBot && joueurs[i].hasBall()) {
                             this.ball = joueurs[i].shoot();
-                            this.ball.setShootedFrom(joueurs[i].getSide());
+                            //this.ball.setShootedFrom(joueurs[i].getSide());
                         }
                         if (joueurs[i].getSide() == "bottom" && input.contains("LEFT") && !joueurs[i].isBot) {
                             joueurs[i].move("left");
@@ -221,11 +225,11 @@ public class Controler {
                         }
                         if (joueurs[i].getSide() == "top" && input.contains("SPACE") && joueurs[i].hasBall() && !joueurs[i].isBot) {
                             this.ball = joueurs[i].shoot();
-                            this.ball.setShootedFrom(joueurs[i].getSide());
+                            //this.ball.setShootedFrom(joueurs[i].getSide());
                         }
                         if (joueurs[i].getSide() == "bottom" && input.contains("ENTER") && joueurs[i].hasBall() && !joueurs[i].isBot) {
                             this.ball = joueurs[i].shoot();
-                            this.ball.setShootedFrom(joueurs[i].getSide());
+                            //this.ball.setShootedFrom(joueurs[i].getSide());
 
                         }
                         if (this.ball != null) {

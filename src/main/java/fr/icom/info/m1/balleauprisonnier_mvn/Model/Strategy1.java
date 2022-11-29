@@ -12,12 +12,12 @@ public class Strategy1 extends Strategy {
     @Override
     public void setPlayers() {
         equipe1[0] = new Player(gc, colorMap[0], w / 2, h - 100, "bottom");
-        equipe1[1] = new Bot(gc, colorMap[0], w - 400, h - 100, "bottom", equipe2,this.gamefield);
-        equipe1[2] = new Bot(gc, colorMap[0], w - 200, h - 100, "bottom", equipe2,this.gamefield);
+        equipe1[1] = new Bot(gc, colorMap[0], w - 400, h - 100, "bottom", equipe2,equipe1,this.gamefield);
+        equipe1[2] = new Bot(gc, colorMap[0], w - 200, h - 100, "bottom", equipe2,equipe1,this.gamefield);
 
         equipe2[0] = new Player(gc, colorMap[1], w / 2, 15, "top");
-        equipe2[1] = new Bot(gc, colorMap[1], w - 400, 15, "top", equipe1,this.gamefield);
-        equipe2[2] = new Bot(gc, colorMap[1], w - 200, 15, "top", equipe1,this.gamefield);
+        equipe2[1] = new Bot(gc, colorMap[1], w - 400, 15, "top", equipe1,equipe2,this.gamefield);
+        equipe2[2] = new Bot(gc, colorMap[1], w - 200, 15, "top", equipe1,equipe2,this.gamefield);
         gamefield.setField();
 
         joueurs[3].setHasBall(true);
