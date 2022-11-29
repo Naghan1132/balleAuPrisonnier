@@ -3,12 +3,14 @@ package fr.icom.info.m1.balleauprisonnier_mvn.Controler;
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.Field;
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.Player;
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.Projectile;
+import fr.icom.info.m1.balleauprisonnier_mvn.View.WinGUI;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.input.KeyEvent;
 
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -65,29 +67,77 @@ public class Controler {
                 gc.fillRect(0, 0, width, height);
 
                 if (field.equipe1Won()) {
-                    //on affiche la fenetre de fin
-                }
-                if (field.equipe2Won()) {
-                    //on affiche la fenetre de fin
+                    gc.clearRect(0, 0, width, height);
+                    new WinGUI();
+                } else if (field.equipe2Won()) {
+                    gc.clearRect(0, 0, width, height);
+                    new WinGUI();
                 }
                 // Deplacement et affichage des joueurs
                 for (int i = 0; i < joueurs.length; i++) {
 
                     if (!joueurs[i].getIsDead()) { //si le joueur est mort il ne peut rien faire
-
+                        //explosion quand un joueur meurt ?
                         if (ball.getVitesse() != 0) {
-
-                            int[][] listeCoordBalle = new int[1][];
-                            int[] vector = new int[2];
                             // balle en mouvement on test si un joueur est touché
+                            if (ball.getShootedFrom() == "top") {
+                                if (joueurs[i].getSide() == "bottom") {
+                                    if (ball.getY() > 400) {
+                                        //System.out.println("y :"+joueurs[0].getY()); //500
+                                        //y_joueur = [500, 500+50] ?
+                                        //x_joueur = [joueur.get(x), + joueur.get(x)+30]
 
+                                        //List<Point2D> coordJoueur = new ArrayList<Point2D>();
+                                        //List<Point2D> coordBall = new ArrayList<Point2D>();
+                                        //int valeurArrondieBalleX = (int) ball.getX();
+                                        //int valeurArrondieBalleY = (int) ball.getY();
+                                        //Point2D testBalle = new Point2D.Double(valeurArrondieBalleX,valeurArrondieBalleY);
+
+
+                                        ArrayList<Integer> xJoueur = new ArrayList<Integer>();
+                                        ArrayList<Integer> yJoueur = new ArrayList<Integer>();
+                                        // HITBOX :
+                                        for (double x = joueurs[i].getX(); x < joueurs[i].getX() + 30; x++) {
+                                            int valeurArrondieBalle = (int) x;
+                                            xJoueur.add(valeurArrondieBalle);
+                                        }
+                                        for (double y = joueurs[i].getY(); y < joueurs[i].getY() + 50; y++) {
+                                            // y -- car on est en bas
+                                            int valeurArrondieBalle = (int) y;
+                                            yJoueur.add(valeurArrondieBalle);
+                                        }
+                                        ArrayList<Integer> xBalle = new ArrayList<Integer>();
+                                        ArrayList<Integer> yBalle = new ArrayList<Integer>();
+                                        for (double x = ball.getX(); x < ball.getX() + ball.getSprite().getTailleImage(); x++) {
+                                            int valeurArrondieBalle = (int) x;
+                                            xBalle.add(valeurArrondieBalle);
+                                        }
+                                        for (double y = ball.getY(); y < ball.getY() + ball.getSprite().getTailleImage(); y++) {
+                                            int valeurArrondieBalle = (int) y;
+                                            yBalle.add(valeurArrondieBalle);
+                                        }
+                                        //System.out.println("xJ "+xJoueur);
+                                        //System.out.println("yJ "+yJoueur);
+                                        //System.out.println("xBalle "+xBalle);
+                                        //System.out.println("yBalle "+yBalle);
+                                        for (Integer xJ : xJoueur) {
+                                            //System.out.println("test");
+                                            if (xBalle.contains(xJ)) {
+                                                for (Integer yJ : yJoueur) {
+                                                    if (yBalle.contains(yJ)) {
+                                                        //System.out.println("MORT");
+                                                        joueurs[i].setIsDead(true);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         } else {
-                            // Pour ramassage de balle OK
+                            // la balle est au sol tester le ramassage de balle OK
                             ArrayList<Integer> intervalle = new ArrayList<Integer>();
-                            //for (double x = ball.getX(); x < ball.getX() - ball.getSprite().getTailleImage(); x--) {
-                            //int valeurArrondieBalle = (int) x;
-                            //intervalle.add(valeurArrondieBalle);
-                            //}
+
                             for (double x = ball.getX(); x < ball.getX() + ball.getSprite().getTailleImage(); x++) {
                                 int valeurArrondieBalle = (int) x;
                                 intervalle.add(valeurArrondieBalle);
@@ -100,6 +150,7 @@ public class Controler {
                                         joueurs[i].setHasBall(true);
                                         joueurs[i].createBall();
                                         this.ball = joueurs[i].getBall();
+                                        this.ball.setShootedFrom("null");
                                     }
                                 }
                             } else {
@@ -111,6 +162,7 @@ public class Controler {
                                         joueurs[i].setHasBall(true);
                                         joueurs[i].createBall();
                                         this.ball = joueurs[i].getBall();
+                                        this.ball.setShootedFrom("null");
                                     }
                                 }
                             }
@@ -122,6 +174,7 @@ public class Controler {
                         }
                         if (joueurs[i].isBot && joueurs[i].hasBall()) {
                             this.ball = joueurs[i].shoot();
+                            this.ball.setShootedFrom(joueurs[i].getSide());
                         }
                         if (joueurs[i].getSide() == "bottom" && input.contains("LEFT") && !joueurs[i].isBot) {
                             joueurs[i].move("left");
@@ -149,10 +202,11 @@ public class Controler {
                         }
                         if (joueurs[i].getSide() == "top" && input.contains("SPACE") && joueurs[i].hasBall() && !joueurs[i].isBot) {
                             this.ball = joueurs[i].shoot();
+                            this.ball.setShootedFrom(joueurs[i].getSide());
                         }
                         if (joueurs[i].getSide() == "bottom" && input.contains("ENTER") && joueurs[i].hasBall() && !joueurs[i].isBot) {
-
                             this.ball = joueurs[i].shoot();
+                            this.ball.setShootedFrom(joueurs[i].getSide());
 
                         }
                         if (this.ball != null) {

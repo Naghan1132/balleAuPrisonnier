@@ -9,20 +9,20 @@ public abstract class Strategy {
     protected Player[] joueurs;
     protected Player[] equipe1;
     protected Player[] equipe2;
-    String[] colorMap = new String[] {"blue", "green", "orange", "purple", "yellow"};
+    String[] colorMap = new String[]{"blue", "green", "orange", "purple", "yellow"};
     protected GraphicsContext gc;
     protected int w;
     protected int h;
 
 
-    public Strategy(Field gamefield){
+    public Strategy(Field gamefield) {
 
         this.gamefield = gamefield;
         this.joueurs = this.gamefield.getJoueurs();
         this.equipe1 = this.gamefield.getEquipe1();
         this.equipe2 = this.gamefield.getEquipe2();
         this.gc = this.gamefield.getGc();
-        this.w  = gamefield.width;
+        this.w = gamefield.width;
         this.h = gamefield.height;
         this.colorMap = gamefield.colorMap;
 
@@ -32,6 +32,8 @@ public abstract class Strategy {
     }
 
     public abstract void setPlayers();
+
     public abstract void setPlayersSpeed();
+
     public abstract void setBallSpeed();
 }

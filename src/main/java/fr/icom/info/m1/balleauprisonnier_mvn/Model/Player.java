@@ -9,7 +9,7 @@ import javafx.util.Duration;
 /**
  * Classe gerant un joueur
  */
-public class Player{
+public class Player {
     public boolean isBot;
     boolean isDead = false;
     boolean hasBall = false;
@@ -58,14 +58,20 @@ public class Player{
         PlayerDirectionArrow.setSmooth(true);
         PlayerDirectionArrow.setCache(true);
 
-        Image tilesheetImage = new Image("assets/orc.png");
-        this.sprite = new Sprite(tilesheetImage, 0, 0, Duration.seconds(.2), side);
-        this.sprite.setX(x);
-        this.sprite.setY(y);
+        if (side == "top") {
+            Image tilesheetImage = new Image("assets/PlayerRed.png");
+            this.sprite = new Sprite(tilesheetImage, 0, 0, Duration.seconds(.2), side);
+            this.sprite.setX(x);
+            this.sprite.setY(y);
+        } else {
+            Image tilesheetImage = new Image("assets/PlayerBlue.png");
+            this.sprite = new Sprite(tilesheetImage, 0, 0, Duration.seconds(.2), side);
+            this.sprite.setX(x);
+            this.sprite.setY(y);
+        }
 
         //directionArrow = sprite.getClip().;
     }
-
 
 
     /**
@@ -75,19 +81,19 @@ public class Player{
         //affiche la fleche
         graphicsContext.save(); // saves the current state on stack, including the current transform
 
-        if(this.getSide()=="top"){
+        if (this.getSide() == "top") {
             rotate(graphicsContext, angle, x + directionArrow.getWidth() / 2, y + directionArrow.getHeight() / 2);
             graphicsContext.drawImage(directionArrow, x, y);
-        }else{
+        } else {
             rotate(graphicsContext, angle, x + directionArrow.getWidth() / 2, y + directionArrow.getHeight() / 6);
-            graphicsContext.drawImage(directionArrow, x, y-50);
+            graphicsContext.drawImage(directionArrow, x, y - 50);
         }
         graphicsContext.restore(); // back to original state (before rotation)
-        if(this.ball != null){
-            if(this.getSide()=="top"){
-                this.ball.reset(this.x+10,this.y+50,this.angle);
-            }else{
-                this.ball.reset(this.x+10,this.y,this.angle);
+        if (this.ball != null) {
+            if (this.getSide() == "top") {
+                this.ball.reset(this.x + 10, this.y + 50, this.angle);
+            } else {
+                this.ball.reset(this.x + 10, this.y, this.angle);
             }
 
         }
@@ -99,7 +105,7 @@ public class Player{
         gc.setTransform(r.getMxx(), r.getMyx(), r.getMxy(), r.getMyy(), r.getTx(), r.getTy());
     }
 
-    public Projectile shoot(){
+    public Projectile shoot() {
         sprite.playShoot();
         this.ball.setAngle(angle);
         Projectile ballShooted = this.ball;
@@ -127,12 +133,12 @@ public class Player{
 
     public void move(String direc) {
         //rien, pour les bots
-        if (direc == "right"){
+        if (direc == "right") {
             if (x < 520) {
                 spriteAnimate();
                 x += step;
             }
-        }else if(direc == "left"){
+        } else if (direc == "left") {
             if (x > 10) {
                 spriteAnimate();
                 x -= step;
@@ -145,18 +151,19 @@ public class Player{
      */
     public void turn(String direc) {
         // Rotation du tir vers la gauche
-        if(direc == "left"){
+        if (direc == "left") {
             if (this.angle < 90) {
                 this.angle += 0.3;
             }
         }
         // Rotation du tir vers la droite
-        else if(direc == "right"){
+        else if (direc == "right") {
             if (this.angle > -90) {
                 this.angle -= 0.3;
             }
         }
     }
+
     public boolean hasBall() {
         return hasBall;
     }
@@ -165,38 +172,45 @@ public class Player{
         this.hasBall = hasBall;
     }
 
-    public void setBall(Projectile ball){
+    public void setBall(Projectile ball) {
         this.ball = ball;
     }
-    public Projectile getBall(){
+
+    public Projectile getBall() {
         return this.ball;
     }
-    public void createBall(){
-        ball = new Projectile(this.graphicsContext,this.side,this.x,this.y,this.angle);
+
+    public void createBall() {
+        ball = new Projectile(this.graphicsContext, this.side, this.x, this.y, this.angle);
         this.setBall(ball);
     }
-    public void setIsDead(boolean dead){
+
+    public void setIsDead(boolean dead) {
+        this.sprite.removeImage();
         this.isDead = dead;
     }
-    public boolean getIsDead(){
+
+    public boolean getIsDead() {
         return this.isDead;
     }
 
-    public Sprite getSprite(){
+    public Sprite getSprite() {
         return sprite;
     }
 
-    public double getX(){
+    public double getX() {
         return this.x;
     }
-    public double getY(){
+
+    public double getY() {
         return this.y;
     }
 
-    public String getSide(){
+    public String getSide() {
         return this.side;
     }
-    public void setStep(double step){
+
+    public void setStep(double step) {
         this.step = step;
     }
 }

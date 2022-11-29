@@ -8,6 +8,7 @@ import javafx.util.Duration;
 
 public class Projectile {
 
+    String shootedFrom;
     double vitesse = 0.2;
     double angle = 90;
     protected double direction;
@@ -19,7 +20,7 @@ public class Projectile {
     Sprite sprite;
     boolean ballTaken = true;
 
-    public Projectile(GraphicsContext gc, String side,double x,double y,double angle) {
+    public Projectile(GraphicsContext gc, String side, double x, double y, double angle) {
         graphicsContext = gc;
         this.side = side;
         this.x = x;
@@ -31,45 +32,49 @@ public class Projectile {
         sprite.setY(y);
     }
 
-    public void display(){
+    public void display() {
         shooted();
         this.graphicsContext.save(); // saves the current state on stack, including the current transform
         rotate(this.graphicsContext, this.angle, this.x + this.ball.getWidth() / 2, this.y + this.ball.getHeight() / 2);
-        this.graphicsContext.drawImage(this.ball,this.x,this.y);
+        this.graphicsContext.drawImage(this.ball, this.x, this.y);
         this.graphicsContext.restore(); // back to original state (before rotation)
     }
-    public void shooted(){
+
+    public void shooted() {
 
         // Collision contre les murs
         if (x < 0 || x > 600 - ball.getWidth()) {
             angle = -angle;
         }
         // La balle s'arrete dans le camp adverse
-        if (y < 0 || y > 600 - ball.getHeight()){
+        if (y <= 0 || y >= 600 - ball.getHeight()) {
             this.setVitesse(0);
         }
         int rotation;
-        if(side.equals("top")){
+        if (side.equals("top")) {
             rotation = 90;
-        }
-        else{
+        } else {
             rotation = 270;
         }
         final double[] vector = new double[2];
-        vector[0] = Math.cos(Math.toRadians(angle+rotation));
-        vector[1] = Math.sin(Math.toRadians(angle+rotation));
+        vector[0] = Math.cos(Math.toRadians(angle + rotation));
+        vector[1] = Math.sin(Math.toRadians(angle + rotation));
         x += vector[0] * this.vitesse;
         y += vector[1] * this.vitesse;
     }
-    public Image getBall(){
+
+    public Image getBall() {
         return this.ball;
     }
-    public double getDirection(){
+
+    public double getDirection() {
         return this.direction;
     }
-    public void setDirection(double direction){
+
+    public void setDirection(double direction) {
         this.direction = direction;
     }
+
     public double getX() {
         return x;
     }
@@ -85,22 +90,28 @@ public class Projectile {
     public void setY(double y) {
         this.y = y;
     }
+
     public void setVitesse(double v) {
         this.vitesse = v;
     }
+
     public void setAngle(double a) {
         this.angle = a;
     }
+
     public boolean isBallTaken() {
         return ballTaken;
     }
+
     public void setBallIsTaken(boolean ballTaken) {
         this.ballTaken = ballTaken;
     }
-    public double getVitesse(){
+
+    public double getVitesse() {
         return this.vitesse;
     }
-    public Sprite getSprite(){
+
+    public Sprite getSprite() {
         return this.sprite;
     }
 
@@ -109,12 +120,20 @@ public class Projectile {
         Rotate r = new Rotate(angle, px, py);
         gc.setTransform(r.getMxx(), r.getMyx(), r.getMxy(), r.getMyy(), r.getTx(), r.getTy());
     }
-    public void reset(double x,double y,double a){
+
+    public void reset(double x, double y, double a) {
         this.x = x;
         this.y = y;
-        this.angle= a;
+        this.angle = a;
     }
 
+    public String getShootedFrom() {
+        return shootedFrom;
+    }
+
+    public void setShootedFrom(String shootedFrom) {
+        this.shootedFrom = shootedFrom;
+    }
 
 
 }

@@ -1,4 +1,5 @@
 package fr.icom.info.m1.balleauprisonnier_mvn.Model;
+
 public final class Singleton {
     private static Singleton instance;
     public Field gameField;

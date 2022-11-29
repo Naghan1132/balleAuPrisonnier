@@ -28,7 +28,6 @@ public class Sprite extends ImageView {
 
         double cellWidth = 64;//animationImage.getWidth() / numCells; //64x64
         double cellHeight = 64;//animationImage.getHeight() / numRows;
-
         this.hauteurImage = animationImage.getHeight();
         this.tailleImage = animationImage.getWidth();
 
@@ -108,6 +107,17 @@ public class Sprite extends ImageView {
 
     public double getTailleImage() {
         return tailleImage;
+    }
+
+    public void removeImage(){
+        //this.im.setImageDrawable(null);
+        setImage(null);
+        //setImageResource(0);
+        setViewport(null);
+        //setImageResource(0);
+
+    }
+    public void test(){
     }
 
 

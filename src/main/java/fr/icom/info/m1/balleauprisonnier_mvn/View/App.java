@@ -43,7 +43,7 @@ public class App extends Application {
             stage.setScene(scene);
             stage.show();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -53,14 +53,14 @@ public class App extends Application {
                                 (avec obstables différents endroits, vitesse différentes etc...)
                             : Creational patterns => Singleton Java classe Field  (voir tp python) OK
                             : https://refactoring.guru/fr/design-patterns/abstract-factory
-                              Abstract Factory A faire
+                              Abstract Factory A faire si le temps
          */
         /*
-         TODO : - faire colisions balle/joueurs
+         TODO : - faire colisions balle/joueurs IMPERATIF !
+                - faire disparaitre les sprites des joueurs quand isDead
                 - les bots doivent se diriger vers la balle si elle est au sol
                 - mettre un timer sur le tirs des bots ?
                 - desing paterns (singleton et strategy fait !)
-                - faire des obstacles (si le temps)
                 - plusieurs vues :  une présentant le terrain (OK)
                                     une autre présentant le score (win GUI)
                                     une autre les contrôles du jeu (OK)
@@ -69,21 +69,20 @@ public class App extends Application {
          */
 
 
-
     }
 
-    public void setUp(ActionEvent event) throws IOException{
+    public void setUp(ActionEvent event) throws IOException {
         Group root = new Group();
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         // Nom de la fenetre
         stage.setTitle("Balle Au Prisonnier");
-        stage.getIcons().add(new Image("assets/ball.png")); // icon du jeu
+        stage.getIcons().add(new Image("assets/ball.png")); // icone du jeu
 
 
         Scene scene = new Scene(root);
 
-        // On cree le terrain de jeu et on l'ajoute a la racine de la scene
+        // On créer le terrain de jeu et on l'ajoute a la racine de la scene
 
         //Field gameField = Field.getInstance();
         Singleton singleField = Singleton.getInstance();
@@ -107,7 +106,7 @@ public class App extends Application {
         stage.show();
     }
 
-        public static void main(String[] args) {
+    public static void main(String[] args) {
         Application.launch(args);
     }
 }

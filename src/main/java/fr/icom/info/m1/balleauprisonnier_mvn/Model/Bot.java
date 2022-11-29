@@ -1,13 +1,15 @@
 package fr.icom.info.m1.balleauprisonnier_mvn.Model;
 
 import javafx.scene.canvas.GraphicsContext;
+
 import java.util.concurrent.TimeUnit;
 
 import java.lang.Math;
 import java.util.Random;
 
-public class Bot extends Player{
+public class Bot extends Player {
     Player[] equipeAdverse;
+
 
     public Bot(GraphicsContext gc, String color, int xInit, int yInit, String side, Player[] equipeAdverse) {
         super(gc, color, xInit, yInit, side);
@@ -15,8 +17,9 @@ public class Bot extends Player{
         this.step = 0.4;
         this.equipeAdverse = equipeAdverse; // pour l'IA
     }
+
     @Override
-    public Projectile shoot(){
+    public Projectile shoot() {
         //Mettre un timer sinon il tire directement
 
         //choisir le meilleur angle pour tirer là où il y a un joueur OK
@@ -33,7 +36,7 @@ public class Bot extends Player{
         // MARCHE POUR  LES BOTS DU HAUT !! (à voir avec ceux du bas si correction bug affichage=
         //faire trigo :
         Random random = new Random();
-        int indiceTarget= random.nextInt(2 - 0 + 1) + 0;
+        int indiceTarget = random.nextInt(2 - 0 + 1) + 0;
         Player target = equipeAdverse[indiceTarget]; // on prends une cible au hasard
 
         // on imagine un triangle rectangle (sommmets = camps adverse,bot,target)
@@ -71,10 +74,10 @@ public class Bot extends Player{
             //System.out.println("meilleur angle : " + bestAngle);
 
             //tester si enemi a droite ou a gauche de lui - ou + :
-            if(coordTarget[0] > coordBot[0]){
+            if (coordTarget[0] > coordBot[0]) {
                 // a droite ou devant : (-)
                 return -bestAngle;
-            }else{
+            } else {
                 return bestAngle;
             }
         }
@@ -87,12 +90,10 @@ public class Bot extends Player{
         Random rand = new Random();
         if (rand.nextBoolean()) {
             super.turn("left");
-        }else{
+        } else {
             super.turn("right");
         }
     }
-
-
 
 
     @Override
