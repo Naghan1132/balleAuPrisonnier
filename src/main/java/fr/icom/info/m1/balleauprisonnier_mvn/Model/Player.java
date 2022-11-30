@@ -1,21 +1,21 @@
 package fr.icom.info.m1.balleauprisonnier_mvn.Model;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.transform.Rotate;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
 /**
  * Classe gerant un joueur
  */
 public class Player {
+    final double y;      // position verticale du joueur
     public boolean isBot;
     boolean isDead = false;
     boolean hasBall = false;
     String side;
     double x;       // position horizontale du joueur
-    final double y;      // position verticale du joueur
     double angle = 0; // rotation du joueur, devrait toujours être en 0 et 180
     double step;    // pas d'un joueur
     String playerColor;
@@ -69,8 +69,6 @@ public class Player {
             this.sprite.setX(x);
             this.sprite.setY(y);
         }
-
-        //directionArrow = sprite.getClip().;
     }
 
 
@@ -174,12 +172,12 @@ public class Player {
         this.hasBall = hasBall;
     }
 
-    public void setBall(Projectile ball) {
-        this.ball = ball;
-    }
-
     public Projectile getBall() {
         return this.ball;
+    }
+
+    public void setBall(Projectile ball) {
+        this.ball = ball;
     }
 
     public void createBall() {
@@ -187,13 +185,13 @@ public class Player {
         this.setBall(ball);
     }
 
+    public boolean getIsDead() {
+        return this.isDead;
+    }
+
     public void setIsDead(boolean dead) {
         this.sprite.removeImage();
         this.isDead = dead;
-    }
-
-    public boolean getIsDead() {
-        return this.isDead;
     }
 
     public Sprite getSprite() {

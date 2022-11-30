@@ -4,9 +4,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.icom.info.m1.balleauprisonnier_mvn.View.App">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #28B2C6;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.icom.info.m1.balleauprisonnier_mvn.View.App">
    <children>
       <Button layoutX="261.0" layoutY="262.0" mnemonicParsing="false" onAction="#setUp" text="RESTART" />
+      <Button layoutX="261.0" layoutY="300.0" mnemonicParsing="false" onAction="#closeWindowns" text="QUITTER" />
       <Label layoutX="198.0" layoutY="175.0" text="ÉQUIPE 1 A GAGNÉE">
          <font>
             <Font size="20.0" />

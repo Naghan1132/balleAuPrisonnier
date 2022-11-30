@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.icom.info.m1.balleauprisonnier_mvn.View.App">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #D8F6CE;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.icom.info.m1.balleauprisonnier_mvn.View.App">
    <children>
       <Label layoutX="186.0" layoutY="41.0" prefHeight="47.0" prefWidth="229.0" text="BALLE AU PRISONNIER">
          <font>

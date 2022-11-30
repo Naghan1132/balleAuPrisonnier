@@ -3,22 +3,14 @@ package fr.icom.info.m1.balleauprisonnier_mvn.Controler;
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.Field;
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.Player;
 import fr.icom.info.m1.balleauprisonnier_mvn.Model.Projectile;
-import fr.icom.info.m1.balleauprisonnier_mvn.Model.Sprite;
 import fr.icom.info.m1.balleauprisonnier_mvn.View.WinGUI;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Stage;
-import javafx.util.Duration;
+import javafx.scene.paint.Color;
 
-import java.awt.geom.Point2D;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class Controler {
 
@@ -28,28 +20,25 @@ public class Controler {
         Field field = Field.getInstance();
         GraphicsContext gc = field.getGc();
 
-        field.setOnKeyPressed(
-                new EventHandler<KeyEvent>() {
-                    public void handle(KeyEvent e) {
-                        String code = e.getCode().toString();
-                        // only add once... prevent duplicates
-                        if (!input.contains(code))
-                            input.add(code);
-                    }
-                });
+        field.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            public void handle(KeyEvent e) {
+                String code = e.getCode().toString();
+                // only add once... prevent duplicates
+                if (!input.contains(code)) input.add(code);
+            }
+        });
 
         /**
          * Event Listener du clavier
          * quand une touche est relachee on l'enleve de la liste d'input
          *
          */
-        field.setOnKeyReleased(
-                new EventHandler<KeyEvent>() {
-                    public void handle(KeyEvent e) {
-                        String code = e.getCode().toString();
-                        input.remove(code);
-                    }
-                });
+        field.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            public void handle(KeyEvent e) {
+                String code = e.getCode().toString();
+                input.remove(code);
+            }
+        });
 
         /**
          *
@@ -60,9 +49,9 @@ public class Controler {
          *
          */
         new AnimationTimer() {
-            Player[] joueurs = field.getJoueurs();
-            double width = field.getWidth();
-            double height = field.getHeight();
+            final Player[] joueurs = field.getJoueurs();
+            final double width = field.getWidth();
+            final double height = field.getHeight();
 
             Projectile ball = field.getProjectile();
 
@@ -75,15 +64,12 @@ public class Controler {
                     stop();
                     gc.clearRect(0, 0, width, height);
                     WinGUI win = new WinGUI();
-                    win.fin(field.getScene(),field.getEquipe1()[0].getSide());
+                    win.fin(field.getScene(), field.getEquipe1()[0].getSide());
                 } else if (field.equipe2Won()) {
                     stop();
                     gc.clearRect(0, 0, width, height);
                     WinGUI win = new WinGUI();
-                    win.fin(field.getScene(),field.getEquipe2()[0].getSide());
-                    //(Stage) field.getParent().getWindow();
-
-                    ////((Node) event.getTarget()).getScene().getWindow();
+                    win.fin(field.getScene(), field.getEquipe2()[0].getSide());
                 }
                 // Deplacement et affichage des joueurs
                 for (int i = 0; i < joueurs.length; i++) {
@@ -205,7 +191,6 @@ public class Controler {
                         }
                         if (joueurs[i].isBot && joueurs[i].hasBall()) {
                             ball = joueurs[i].shoot();
-                            //this.ball.setShootedFrom(joueurs[i].getSide());
                             field.setBall(ball);
                         }
                         if (joueurs[i].getSide() == "bottom" && input.contains("LEFT") && !joueurs[i].isBot) {
@@ -234,12 +219,10 @@ public class Controler {
                         }
                         if (joueurs[i].getSide() == "top" && input.contains("SPACE") && joueurs[i].hasBall() && !joueurs[i].isBot) {
                             ball = joueurs[i].shoot();
-                            //this.ball.setShootedFrom(joueurs[i].getSide());
                             field.setBall(ball);
                         }
                         if (joueurs[i].getSide() == "bottom" && input.contains("ENTER") && joueurs[i].hasBall() && !joueurs[i].isBot) {
                             ball = joueurs[i].shoot();
-                            //this.ball.setShootedFrom(joueurs[i].getSide());
                             field.setBall(ball);
 
                         }

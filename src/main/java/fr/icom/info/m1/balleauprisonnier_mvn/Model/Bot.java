@@ -4,32 +4,25 @@ import javafx.scene.canvas.GraphicsContext;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import java.lang.Math;
 import java.util.Random;
 
 public class Bot extends Player {
     Player[] equipeAdverse;
-    Player[] equipeDuBot;
     Field field;
 
 
-    public Bot(GraphicsContext gc, String color, int xInit, int yInit, String side, Player[] equipeAdverse,Player[] equipeDuBot,Field field) {
+    public Bot(GraphicsContext gc, String color, int xInit, int yInit, String side, Player[] equipeAdverse, Field field) {
         super(gc, color, xInit, yInit, side);
         this.isBot = true;
         this.step = 0.4;
-        this.equipeAdverse = equipeAdverse; // pour l'IA
+        this.equipeAdverse = equipeAdverse;
         this.field = field;
-        this.equipeDuBot = equipeDuBot;
     }
 
     @Override
     public Projectile shoot() {
-        //Mettre un timer sinon il tire directement
-
         //choisir le meilleur angle pour tirer là où il y a un joueur OK
-        this.angle = chooseBestAngle(); // enemis a droite donc on mets moins
+        this.angle = chooseBestAngle();
         this.ball.setAngle(this.angle);
         Projectile ballShooted = this.ball;
         this.ball.setShootedFrom(this.getSide());
@@ -41,13 +34,10 @@ public class Bot extends Player {
     }
 
     public double chooseBestAngle() {
-        // MARCHE POUR  LES BOTS DU HAUT !! (à voir avec ceux du bas si correction bug affichage=
-        //faire trigo :
         List<Player> aliveEnemies = new ArrayList<>();
-
         // choisir parmit les enemis vivants :
-        for (Player p : equipeAdverse){
-            if (!p.isDead){
+        for (Player p : equipeAdverse) {
+            if (!p.isDead) {
                 aliveEnemies.add(p);
             }
         }
@@ -87,11 +77,8 @@ public class Bot extends Player {
             double NormeV = Math.sqrt(Math.pow(vectV[0], 2) + Math.pow(vectV[1], 2));
 
             double bestAngle = Math.acos(prodscal / (NormeU * NormeV)) * 180 / Math.PI;
-            //System.out.println("meilleur angle : " + bestAngle);
-
             //tester si enemi a droite ou a gauche de lui - ou + :
             if (coordTarget[0] > coordBot[0]) {
-                // a droite ou devant : (-)
                 return -bestAngle;
             } else {
                 return bestAngle;
@@ -116,39 +103,36 @@ public class Bot extends Player {
     public void move(String direc) {
         //aller chercher la balle si elle est dans leurs camps sinon random
 
-        //Début ramassage de balle par les bots
-        //tester si un gars de son équipe à récup la balle
         boolean ballPicked = false;
         Player[] equipeALlie = new Player[3];
-        double testCoordYBall = 0.0;
-        if(this.getSide() == "top"){
+        if (this.getSide() == "top") {
             equipeALlie = this.field.getEquipe2();
-        }else{
+        } else {
             equipeALlie = this.field.getEquipe1();
         }
-        for (Player p : equipeALlie){
-            if(p.hasBall()){
+        for (Player p : equipeALlie) {
+            if (p.hasBall()) {
                 ballPicked = true;
             }
         }
-        if(this.field.getBall().getVitesse() == 0){
-            if(this.field.getBall().getY() <= 100 && !ballPicked && this.getSide() == "top"){
+        if (this.field.getBall().getVitesse() == 0) {
+            if (this.field.getBall().getY() <= 100 && !ballPicked && this.getSide() == "top") {
                 double xB = this.field.getBall().getX();
-                if(this.x < xB){
+                if (this.x < xB) {
                     super.move("right");
-                }else{
+                } else {
                     super.move("left");
                 }
-            }else if(this.field.getBall().getY() >= 500 && !ballPicked && this.getSide() == "bottom"){
+            } else if (this.field.getBall().getY() >= 500 && !ballPicked && this.getSide() == "bottom") {
                 double xB = this.field.getBall().getX();
-                if(this.x < xB){
+                if (this.x < xB) {
                     super.move("right");
-                }else{
+                } else {
                     super.move("left");
                 }
             }
 
-        }else{
+        } else {
             Random rand = new Random();
             if (rand.nextBoolean()) {
                 super.move("left");

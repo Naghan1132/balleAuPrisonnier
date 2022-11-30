@@ -25,6 +25,10 @@ import java.net.URL;
  */
 public class App extends Application {
 
+    public static void main(String[] args) {
+        Application.launch(args);
+    }
+
     /**
      * En javafx start() lance l'application
      * <p>
@@ -46,29 +50,6 @@ public class App extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        /*
-
-        Pattern a utiliser  : Behavioral patterns => Strategy (simple => voir CC de licence) OK
-                                (avec obstables différents endroits, vitesse différentes etc...)
-                            : Creational patterns => Singleton Java classe Field  (voir tp python) OK
-                            : https://refactoring.guru/fr/design-patterns/abstract-factory
-                              Abstract Factory A faire si le temps
-         */
-        /*
-         TODO : - faire colisions balle/joueurs IMPERATIF !
-                - faire disparaitre les sprites des joueurs quand isDead
-                - les bots doivent se diriger vers la balle si elle est au sol
-                - mettre un timer sur le tirs des bots ?
-                - desing paterns (singleton et strategy fait !)
-                - plusieurs vues :  une présentant le terrain (OK)
-                                    une autre présentant le score (win GUI)
-                                    une autre les contrôles du jeu (OK)
-
-
-         */
-
-
     }
 
     public void setUp(ActionEvent event) throws IOException {
@@ -105,8 +86,7 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
-    public static void main(String[] args) {
-        Application.launch(args);
+    public void closeWindowns(ActionEvent event) throws IOException {
+        ((Node)(event.getSource())).getScene().getWindow().hide();
     }
 }

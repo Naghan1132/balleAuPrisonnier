@@ -1,7 +1,6 @@
 package fr.icom.info.m1.balleauprisonnier_mvn.Model;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.canvas.GraphicsContext;
 
 public abstract class Strategy {
 
@@ -9,10 +8,10 @@ public abstract class Strategy {
     protected Player[] joueurs;
     protected Player[] equipe1;
     protected Player[] equipe2;
-    String[] colorMap = new String[]{"blue", "green", "orange", "purple", "yellow"};
     protected GraphicsContext gc;
     protected int w;
     protected int h;
+    String[] colorMap = new String[]{"blue", "green", "orange", "purple", "yellow"};
 
 
     public Strategy(Field gamefield) {

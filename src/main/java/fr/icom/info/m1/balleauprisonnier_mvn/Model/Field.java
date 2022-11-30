@@ -1,16 +1,10 @@
 package fr.icom.info.m1.balleauprisonnier_mvn.Model;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import javafx.animation.AnimationTimer;
-import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
+
+import java.util.ArrayList;
 
 /**
  * Classe du terrain de jeu.
@@ -19,7 +13,10 @@ import javafx.scene.paint.Color;
 public class Field extends Canvas {
 
     private static Field instance;
-
+    final GraphicsContext gc;
+    final int width;
+    final int height;
+    public Projectile ball;
     /**
      * Joueurs
      */
@@ -34,11 +31,6 @@ public class Field extends Canvas {
      * Tableau traçant les evenements
      */
     ArrayList<String> input = new ArrayList<String>();
-    final GraphicsContext gc;
-    final int width;
-    final int height;
-
-    public Projectile ball;
 
     /**
      * Canvas dans lequel on va dessiner le jeu.
@@ -55,6 +47,13 @@ public class Field extends Canvas {
         this.setFocusTraversable(true);
 
         this.gc = this.getGraphicsContext2D();
+    }
+
+    public static Field getInstance() {
+        if (instance == null) {
+            instance = new Field(600, 600);
+        }
+        return instance;
     }
 
     public void setField() {
@@ -97,11 +96,7 @@ public class Field extends Canvas {
                 cptDead += 1;
             }
         }
-        if (cptDead == 3) {
-            return true;
-        } else {
-            return false;
-        }
+        return cptDead == 3;
     }
 
     public boolean equipe2Won() {
@@ -111,11 +106,7 @@ public class Field extends Canvas {
                 cptDead += 1;
             }
         }
-        if (cptDead == 3) {
-            return true;
-        } else {
-            return false;
-        }
+        return cptDead == 3;
     }
 
     public Projectile getBall() {
@@ -124,12 +115,5 @@ public class Field extends Canvas {
 
     public void setBall(Projectile ball) {
         this.ball = ball;
-    }
-
-    public static Field getInstance() {
-        if (instance == null) {
-            instance = new Field(600, 600);
-        }
-        return instance;
     }
 }

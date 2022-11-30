@@ -2,16 +2,15 @@ package fr.icom.info.m1.balleauprisonnier_mvn.Model;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
 public class Projectile {
 
+    protected double direction;
     String shootedFrom;
     double vitesse = 0.2;
     double angle = 90;
-    protected double direction;
     Image ball;
     GraphicsContext graphicsContext;
     String side;
@@ -91,10 +90,6 @@ public class Projectile {
         this.y = y;
     }
 
-    public void setVitesse(double v) {
-        this.vitesse = v;
-    }
-
     public void setAngle(double a) {
         this.angle = a;
     }
@@ -109,6 +104,10 @@ public class Projectile {
 
     public double getVitesse() {
         return this.vitesse;
+    }
+
+    public void setVitesse(double v) {
+        this.vitesse = v;
     }
 
     public Sprite getSprite() {

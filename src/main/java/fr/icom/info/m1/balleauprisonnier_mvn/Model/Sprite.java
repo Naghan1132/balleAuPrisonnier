@@ -1,26 +1,27 @@
 package fr.icom.info.m1.balleauprisonnier_mvn.Model;
 
-import javafx.animation.*;
-import javafx.beans.property.*;
-import javafx.geometry.*;
-import javafx.scene.image.*;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
 public class Sprite extends ImageView {
     private final Rectangle2D[] walkClips;
     private final Rectangle2D[] shootClips;
-    private int numCells;
-    private int numCellsWalk;
-    private int numCellsShoot;
     private final Timeline walkTimeline;
     private final IntegerProperty frameCounter = new SimpleIntegerProperty(0);
     private final Timeline shootTimeline;
-    private Timeline timeline;
     public boolean isRunning;
-
     public double hauteurImage;
-
     public double tailleImage;
+    private final int numCells;
+    private final int numCellsWalk;
+    private final int numCellsShoot;
+    private Timeline timeline;
 
 
     public Sprite(Image animationImage, int numCells, int numRows, Duration frameTime, String side) {
@@ -109,16 +110,8 @@ public class Sprite extends ImageView {
         return tailleImage;
     }
 
-    public void removeImage(){
-        //this.im.setImageDrawable(null);
+    public void removeImage() {
         setImage(null);
-        //setImageResource(0);
         setViewport(null);
-        //setImageResource(0);
-
     }
-    public void test(){
-    }
-
-
 }
