@@ -28,6 +28,8 @@ public abstract class Strategy {
         this.setPlayers();
         this.setPlayersSpeed();
         this.setBallSpeed();
+        this.createAndGiveABallToOnePlayer();
+
     }
 
     public abstract void setPlayers();
@@ -35,4 +37,6 @@ public abstract class Strategy {
     public abstract void setPlayersSpeed();
 
     public abstract void setBallSpeed();
+
+    public abstract void createAndGiveABallToOnePlayer();
 }

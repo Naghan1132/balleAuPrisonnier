@@ -18,15 +18,13 @@ public class Strategy1 extends Strategy {
         equipe2[1] = new Bot(gc, colorMap[1], w - 400, 15, "top", equipe1, this.gamefield);
         equipe2[2] = new Bot(gc, colorMap[1], w - 200, 15, "top", equipe1, this.gamefield);
         gamefield.setField();
-
-        joueurs[3].setHasBall(true);
-        joueurs[3].createBall();
-        gamefield.ball = joueurs[3].getBall();
     }
 
     @Override
     public void setBallSpeed() {
-        gamefield.ball.setVitesse(0.2);
+        for (Player p : joueurs){
+            p.setMaxBallSpeed(0.1); // vitesse de la balle
+        }
     }
 
     @Override
@@ -43,5 +41,13 @@ public class Strategy1 extends Strategy {
             }
             joueurs[i].setStep(step);
         }
+    }
+
+    @Override
+    public void createAndGiveABallToOnePlayer() {
+        joueurs[3].setHasBall(true);
+        joueurs[3].createBall();
+        gamefield.ball = joueurs[3].getBall();
+        gamefield.ball.setVitesse(joueurs[3].getMaxBallSpeed());
     }
 }

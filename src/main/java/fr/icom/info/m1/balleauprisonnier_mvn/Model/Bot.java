@@ -30,7 +30,7 @@ public class Bot extends Player {
         this.ball.setShootedFrom(this.getSide());
         this.setHasBall(false);
         this.setBall(null);
-        ballShooted.setVitesse(0.2);
+        ballShooted.setVitesse(this.getMaxBallSpeed());
         sprite.playShoot();
         return ballShooted;
     }

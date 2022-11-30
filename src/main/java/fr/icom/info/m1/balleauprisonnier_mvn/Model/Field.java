@@ -17,6 +17,7 @@ public class Field extends Canvas {
     final int width;
     final int height;
     public Projectile ball;
+
     /**
      * Joueurs
      */

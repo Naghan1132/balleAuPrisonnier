@@ -9,7 +9,7 @@ public class Projectile {
 
     protected double direction;
     String shootedFrom;
-    double vitesse = 0.2;
+    double vitesse;
     double angle = 90;
     Image ball;
     GraphicsContext graphicsContext;

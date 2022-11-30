@@ -18,6 +18,7 @@ public class Player {
     double x;       // position horizontale du joueur
     double angle = 0; // rotation du joueur, devrait toujours être en 0 et 180
     double step;    // pas d'un joueur
+    double maxBallSpeed;
     String playerColor;
     // On une image globale du joueur
     Image directionArrow;
@@ -107,11 +108,11 @@ public class Player {
         sprite.playShoot();
         this.ball.setAngle(angle);
         Projectile ballShooted = this.ball;
+        ballShooted.setVitesse(this.getMaxBallSpeed());
         this.setHasBall(false);
         this.setBall(null);
         ballShooted.setShootedFrom(this.getSide());
         ballShooted.setBallIsTaken(false);
-        ballShooted.setVitesse(0.2);
         return ballShooted;
     }
 
@@ -182,7 +183,9 @@ public class Player {
 
     public void createBall() {
         ball = new Projectile(this.graphicsContext, this.side, this.x, this.y, this.angle);
+        ball.setVitesse(this.getMaxBallSpeed());
         this.setBall(ball);
+
     }
 
     public boolean getIsDead() {
@@ -212,5 +215,13 @@ public class Player {
 
     public void setStep(double step) {
         this.step = step;
+    }
+
+    public double getMaxBallSpeed() {
+        return maxBallSpeed;
+    }
+
+    public void setMaxBallSpeed(double maxBallSpeed) {
+        this.maxBallSpeed = maxBallSpeed;
     }
 }
