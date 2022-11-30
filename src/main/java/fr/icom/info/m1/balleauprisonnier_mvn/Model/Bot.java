@@ -124,7 +124,7 @@ public class Bot extends Player {
                 ballPicked = true;
             }
         }
-        if (this.field.getBall().getVitesse() == 0) {
+        if (this.field.getBall().getVitesse() == 0 && this.field.getBall().getShootedFrom() != this.side) {
             if (this.field.getBall().getY() <= 100 && !ballPicked && this.getSide() == "top") {
                 double xB = this.field.getBall().getX();
                 if (this.x < xB) {
@@ -143,9 +143,9 @@ public class Bot extends Player {
         } else {
             Random randGDouRandom = new Random();
 
-            // choisi entre 10 fois la direction actuel ou full random
+            // choisi entre 20 fois la direction actuel ou full random
             if (randGDouRandom.nextBoolean()) {
-                // pour que le bot bouge 10 fois dans la même direction
+                // pour que le bot bouge 20 fois dans la même direction
                 if (cptMoves == 0) {
                     Random randGD = new Random();
                     if (randGD.nextBoolean()) {
