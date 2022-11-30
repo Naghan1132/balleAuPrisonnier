@@ -102,7 +102,6 @@ public class Bot extends Player {
     @Override
     public void move(String direc) {
         //aller chercher la balle si elle est dans leurs camps sinon random
-
         boolean ballPicked = false;
         Player[] equipeALlie = new Player[3];
         if (this.getSide() == "top") {
