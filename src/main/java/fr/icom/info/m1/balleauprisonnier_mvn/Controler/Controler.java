@@ -120,7 +120,8 @@ public class Controler {
                                         }
                                     }
                                 }
-                            }if(ball.getShootedFrom() == "bottom"){
+                            }
+                            if (ball.getShootedFrom() == "bottom") {
                                 if (joueurs[i].getSide() == "top") {
                                     if (ball.getY() < 300) {
                                         ArrayList<Integer> xJoueur = new ArrayList<Integer>();
@@ -172,8 +173,8 @@ public class Controler {
                                     if (intervalle.contains(valeurArrondieJoueur)) {
                                         joueurs[i].setHasBall(true);
                                         joueurs[i].createBall();
-                                        this.ball = joueurs[i].getBall();
-                                        this.ball.setShootedFrom("null");
+                                        ball = joueurs[i].getBall();
+                                        ball.setShootedFrom("null");
                                     }
                                 }
                             } else {
@@ -184,8 +185,8 @@ public class Controler {
                                     if (intervalle.contains(valeurArrondieJoueur)) {
                                         joueurs[i].setHasBall(true);
                                         joueurs[i].createBall();
-                                        this.ball = joueurs[i].getBall();
-                                        this.ball.setShootedFrom("null");
+                                        ball = joueurs[i].getBall();
+                                        ball.setShootedFrom("null");
                                     }
                                 }
                             }
@@ -196,8 +197,9 @@ public class Controler {
                             //joueurs[i].turn("bot"); //pas réellement besoin
                         }
                         if (joueurs[i].isBot && joueurs[i].hasBall()) {
-                            this.ball = joueurs[i].shoot();
+                            ball = joueurs[i].shoot();
                             //this.ball.setShootedFrom(joueurs[i].getSide());
+                            field.setBall(ball);
                         }
                         if (joueurs[i].getSide() == "bottom" && input.contains("LEFT") && !joueurs[i].isBot) {
                             joueurs[i].move("left");
@@ -224,16 +226,18 @@ public class Controler {
                             joueurs[i].turn("right");
                         }
                         if (joueurs[i].getSide() == "top" && input.contains("SPACE") && joueurs[i].hasBall() && !joueurs[i].isBot) {
-                            this.ball = joueurs[i].shoot();
+                            ball = joueurs[i].shoot();
                             //this.ball.setShootedFrom(joueurs[i].getSide());
+                            field.setBall(ball);
                         }
                         if (joueurs[i].getSide() == "bottom" && input.contains("ENTER") && joueurs[i].hasBall() && !joueurs[i].isBot) {
-                            this.ball = joueurs[i].shoot();
+                            ball = joueurs[i].shoot();
                             //this.ball.setShootedFrom(joueurs[i].getSide());
+                            field.setBall(ball);
 
                         }
-                        if (this.ball != null) {
-                            this.ball.display();
+                        if (ball != null) {
+                            ball.display();
                         }
 
                         joueurs[i].display();

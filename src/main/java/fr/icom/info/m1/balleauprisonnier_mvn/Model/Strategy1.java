@@ -27,7 +27,7 @@ public class Strategy1 extends Strategy {
 
     @Override
     public void setBallSpeed() {
-        gamefield.ball.setVitesse(0.1);
+        gamefield.ball.setVitesse(0.2);
     }
 
     @Override
@@ -38,9 +38,9 @@ public class Strategy1 extends Strategy {
             if (joueurs[i].isBot) {
                 //Random randomGenerator = new Random();
                 //step = randomGenerator.nextFloat();
-                step = 0.2;
+                step = 0.3;
             } else {
-                step = 0.2;
+                step = 0.3;
             }
             joueurs[i].setStep(step);
         }

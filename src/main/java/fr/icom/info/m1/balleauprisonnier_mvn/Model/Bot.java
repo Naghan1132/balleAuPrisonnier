@@ -2,6 +2,8 @@ package fr.icom.info.m1.balleauprisonnier_mvn.Model;
 
 import javafx.scene.canvas.GraphicsContext;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import java.lang.Math;
@@ -33,6 +35,7 @@ public class Bot extends Player {
         this.ball.setShootedFrom(this.getSide());
         this.setHasBall(false);
         this.setBall(null);
+        ballShooted.setVitesse(0.2);
         sprite.playShoot();
         return ballShooted;
     }
@@ -40,10 +43,17 @@ public class Bot extends Player {
     public double chooseBestAngle() {
         // MARCHE POUR  LES BOTS DU HAUT !! (à voir avec ceux du bas si correction bug affichage=
         //faire trigo :
-        Random random = new Random();
-        int indiceTarget = random.nextInt(2 - 0 + 1) + 0;
-        Player target = equipeAdverse[indiceTarget]; // on prends une cible au hasard
+        List<Player> aliveEnemies = new ArrayList<>();
 
+        // choisir parmit les enemis vivants :
+        for (Player p : equipeAdverse){
+            if (!p.isDead){
+                aliveEnemies.add(p);
+            }
+        }
+        Random random = new Random();
+        int randomIndex = random.nextInt(aliveEnemies.size());
+        Player target = aliveEnemies.get(randomIndex); // on prends une cible au hasard
 
         // on imagine un triangle rectangle (sommmets = camps adverse,bot,target)
         // on trace une ligne verticale entre le bot qui tire et le camps adverse
@@ -109,20 +119,35 @@ public class Bot extends Player {
         //Début ramassage de balle par les bots
         //tester si un gars de son équipe à récup la balle
         boolean ballPicked = false;
-
-        for (Player p : this.equipeDuBot){
-            //System.out.println("has ball = ?"+p.hasBall());
+        Player[] equipeALlie = new Player[3];
+        double testCoordYBall = 0.0;
+        if(this.getSide() == "top"){
+            equipeALlie = this.field.getEquipe2();
+        }else{
+            equipeALlie = this.field.getEquipe1();
+        }
+        for (Player p : equipeALlie){
             if(p.hasBall()){
                 ballPicked = true;
             }
         }
-        if(this.field.getBall().getVitesse() == 0 && this.field.getBall().getShootedFrom() != this.getSide()){
-            double xB = this.field.getBall().getX();
-            if(this.x < xB){
-                super.move("right");
-            }else{
-                super.move("left");
+        if(this.field.getBall().getVitesse() == 0){
+            if(this.field.getBall().getY() <= 100 && !ballPicked && this.getSide() == "top"){
+                double xB = this.field.getBall().getX();
+                if(this.x < xB){
+                    super.move("right");
+                }else{
+                    super.move("left");
+                }
+            }else if(this.field.getBall().getY() >= 500 && !ballPicked && this.getSide() == "bottom"){
+                double xB = this.field.getBall().getX();
+                if(this.x < xB){
+                    super.move("right");
+                }else{
+                    super.move("left");
+                }
             }
+
         }else{
             Random rand = new Random();
             if (rand.nextBoolean()) {

@@ -113,6 +113,7 @@ public class Player {
         this.setBall(null);
         ballShooted.setShootedFrom(this.getSide());
         ballShooted.setBallIsTaken(false);
+        ballShooted.setVitesse(0.2);
         return ballShooted;
     }
 
