@@ -22,7 +22,7 @@ Notre projet propose un jeu de balle au prisonnier avec un Menu au départ qui c
 * ~/View: contient les fichiers appartenant à la Vue
 * ~/assets : contient les fichiers graphiques pour le jeu
 * ~/test : contient un fichier pour faire des test sur le code
-* Le rapport, le diagramme et le fichier maven se situent à la racine du projet
+* Le rapport, le diagramme et le fichier maven (pom.xml) se situent à la racine du projet
 
 ### Comment jouer ?
 ----------------------------------
