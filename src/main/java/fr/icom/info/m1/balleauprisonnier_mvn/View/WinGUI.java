@@ -22,6 +22,8 @@ import java.net.URL;
 
 public class WinGUI extends Application {
 
+    String whoWon;
+
     @Override
     public void start(Stage stage) throws Exception {
         try {
@@ -35,5 +37,18 @@ public class WinGUI extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void fin(Scene s,String side){
+
+        this.whoWon = side;
+        Stage thisStage = (Stage) s.getWindow();
+        try{
+            this.start(thisStage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }
 }

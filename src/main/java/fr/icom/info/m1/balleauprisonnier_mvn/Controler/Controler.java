@@ -7,10 +7,12 @@ import fr.icom.info.m1.balleauprisonnier_mvn.Model.Sprite;
 import fr.icom.info.m1.balleauprisonnier_mvn.View.WinGUI;
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.awt.geom.Point2D;
@@ -71,16 +73,20 @@ public class Controler {
 
                 if (field.equipe1Won()) {
                     gc.clearRect(0, 0, width, height);
-                    new WinGUI();
+                    WinGUI win = new WinGUI();
+                    win.fin(field.getScene(),field.getEquipe1()[0].getSide());
                 } else if (field.equipe2Won()) {
                     gc.clearRect(0, 0, width, height);
-                    new WinGUI();
+                    WinGUI win = new WinGUI();
+                    win.fin(field.getScene(),field.getEquipe2()[0].getSide());
+                    //(Stage) field.getParent().getWindow();
+
+                    ////((Node) event.getTarget()).getScene().getWindow();
                 }
                 // Deplacement et affichage des joueurs
                 for (int i = 0; i < joueurs.length; i++) {
 
                     if (!joueurs[i].getIsDead()) { //si le joueur est mort il ne peut rien faire
-                        //explosion quand un joueur meurt ?
                         if (ball.getVitesse() != 0) {
                             // balle en mouvement on test si un joueur est touché
                             if (ball.getShootedFrom() == "top") {
@@ -194,7 +200,6 @@ public class Controler {
 
                         if (joueurs[i].isBot) {
                             joueurs[i].move("bot");
-                            //joueurs[i].turn("bot"); //pas réellement besoin
                         }
                         if (joueurs[i].isBot && joueurs[i].hasBall()) {
                             ball = joueurs[i].shoot();
