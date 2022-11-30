@@ -54,23 +54,22 @@ public class App extends Application {
 
     public void setUp(ActionEvent event) throws IOException {
         Group root = new Group();
+        //On récupère la fenêtre
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         // Nom de la fenetre
         stage.setTitle("Balle Au Prisonnier");
         stage.getIcons().add(new Image("assets/ball.png")); // icone du jeu
 
-
         Scene scene = new Scene(root);
 
         // On créer le terrain de jeu et on l'ajoute a la racine de la scene
-
-        //Field gameField = Field.getInstance();
         Singleton singleField = Singleton.getInstance();
         Field gameField = singleField.gameField;
 
+        //Création de la Strategy
         new Strategy1(gameField);
-
+        //Création du Controler
         new Controler();
 
         root.getChildren().add(gameField);
@@ -82,11 +81,12 @@ public class App extends Application {
         root.getChildren().add(gameField.getJoueurs()[5].getSprite());
 
         // On ajoute la scene a la fenetre et on affiche
-
         stage.setScene(scene);
         stage.show();
     }
+
     public void closeWindowns(ActionEvent event) throws IOException {
-        ((Node)(event.getSource())).getScene().getWindow().hide();
+        // On ferme la fenêtre
+        ((Node) (event.getSource())).getScene().getWindow().hide();
     }
 }

@@ -153,13 +153,13 @@ public class Player {
         // Rotation du tir vers la gauche
         if (direc == "left") {
             if (this.angle < 90) {
-                this.angle += 0.3;
+                this.angle += 0.2;
             }
         }
         // Rotation du tir vers la droite
         else if (direc == "right") {
             if (this.angle > -90) {
-                this.angle -= 0.3;
+                this.angle -= 0.2;
             }
         }
     }

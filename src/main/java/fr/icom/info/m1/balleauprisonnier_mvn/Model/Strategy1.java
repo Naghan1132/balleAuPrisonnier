@@ -1,5 +1,7 @@
 package fr.icom.info.m1.balleauprisonnier_mvn.Model;
 
+import java.util.Random;
+
 public class Strategy1 extends Strategy {
 
     public Strategy1(Field gamefield) {
@@ -30,14 +32,14 @@ public class Strategy1 extends Strategy {
     @Override
     public void setPlayersSpeed() {
         for (int i = 0; i < this.joueurs.length; i++) {
-            //Tous les joueurs ont une vitesse aleatoire entre 0.0 et 1.0
+            //Tous les bots ont une vitesse aleatoire entre 0.1 et 0.3
             double step = 0.0;
             if (joueurs[i].isBot) {
-                //Random randomGenerator = new Random();
-                //step = randomGenerator.nextFloat();
-                step = 0.3;
+                Random r = new Random();
+                step =  (r.nextInt((int)((0.3-0.1)*10+1))+0.1*10) / 10.0;
             } else {
-                step = 0.3;
+                // on laisse les joueurs à 0.1 ou 0.2
+                step = 0.2;
             }
             joueurs[i].setStep(step);
         }

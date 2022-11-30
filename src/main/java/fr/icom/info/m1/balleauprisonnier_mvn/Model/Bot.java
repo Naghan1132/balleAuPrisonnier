@@ -9,7 +9,6 @@ import java.util.Random;
 public class Bot extends Player {
     Player[] equipeAdverse;
     Field field;
-
     String actualDirect;
     Integer cptMoves = 0;
 
@@ -24,8 +23,8 @@ public class Bot extends Player {
 
     @Override
     public Projectile shoot() {
-        //choisir le meilleur angle pour tirer là où il y a un joueur OK
         this.angle = chooseBestAngle();
+        // On donne l'angle parfait à la balle qui va être tirée
         this.ball.setAngle(this.angle);
         Projectile ballShooted = this.ball;
         this.ball.setShootedFrom(this.getSide());
@@ -36,9 +35,13 @@ public class Bot extends Player {
         return ballShooted;
     }
 
+    /*
+    *
+    * chooseBestAngle(), choisit le meilleur angle pour toucher un joueur
+     */
     public double chooseBestAngle() {
         List<Player> aliveEnemies = new ArrayList<>();
-        // choisir parmit les enemis vivants :
+        // choisit une cible parmit les enemis vivants :
         for (Player p : equipeAdverse) {
             if (!p.isDead) {
                 aliveEnemies.add(p);
@@ -51,7 +54,6 @@ public class Bot extends Player {
         // on imagine un triangle rectangle (sommmets = camps adverse,bot,target)
         // on trace une ligne verticale entre le bot qui tire et le camps adverse
         // et du bot a la target, on cherche cet angle !!
-        //if (this.side == "top") {
         double[] coordCampsAdverse = new double[2];
         coordCampsAdverse[0] = this.x;
         coordCampsAdverse[1] = target.getY(); // => 570 pour les joueurs en bas
@@ -111,7 +113,7 @@ public class Bot extends Player {
 
     @Override
     public void move(String direc) {
-        //aller chercher la balle si elle est dans leurs camps sinon random
+        //aller chercher la balle si elle est dans leurs camps sinon déplacements random pour l'équipe adverse
         boolean ballPicked = false;
         Player[] equipeALlie = new Player[3];
         if (this.getSide() == "top") {
@@ -143,7 +145,7 @@ public class Bot extends Player {
         } else {
             Random randGDouRandom = new Random();
 
-            // choisi entre 20 fois la direction actuel ou full random
+            // choisi entre 20 fois la direction actuelle ou full random
             if (randGDouRandom.nextBoolean()) {
                 // pour que le bot bouge 20 fois dans la même direction
                 if (cptMoves == 0) {
