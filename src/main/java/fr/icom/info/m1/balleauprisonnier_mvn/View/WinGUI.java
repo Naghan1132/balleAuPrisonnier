@@ -26,17 +26,32 @@ public class WinGUI extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        try {
-            URL url = new File("src/main/java/fr/icom/info/m1/balleauprisonnier_mvn/View/Win.fxml").toURI().toURL();
-            Parent root = FXMLLoader.load(url);
-            Scene scene = new Scene(root);
+        if (this.whoWon == "bottom"){
+            try {
+                URL url = new File("src/main/java/fr/icom/info/m1/balleauprisonnier_mvn/View/Win1.fxml").toURI().toURL();
+                Parent root = FXMLLoader.load(url);
+                Scene scene = new Scene(root);
 
-            stage.setScene(scene);
-            stage.show();
+                stage.setScene(scene);
+                stage.show();
 
-        } catch (Exception e) {
-            e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }else{
+            try {
+                URL url = new File("src/main/java/fr/icom/info/m1/balleauprisonnier_mvn/View/Win2.fxml").toURI().toURL();
+                Parent root = FXMLLoader.load(url);
+                Scene scene = new Scene(root);
+
+                stage.setScene(scene);
+                stage.show();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+
     }
 
     public void fin(Scene s,String side){

@@ -72,10 +72,12 @@ public class Controler {
                 gc.fillRect(0, 0, width, height);
 
                 if (field.equipe1Won()) {
+                    stop();
                     gc.clearRect(0, 0, width, height);
                     WinGUI win = new WinGUI();
                     win.fin(field.getScene(),field.getEquipe1()[0].getSide());
                 } else if (field.equipe2Won()) {
+                    stop();
                     gc.clearRect(0, 0, width, height);
                     WinGUI win = new WinGUI();
                     win.fin(field.getScene(),field.getEquipe2()[0].getSide());
