@@ -10,6 +10,9 @@ public class Bot extends Player {
     Player[] equipeAdverse;
     Field field;
 
+    String actualDirect;
+    Integer cptMoves = 0;
+
 
     public Bot(GraphicsContext gc, String color, int xInit, int yInit, String side, Player[] equipeAdverse, Field field) {
         super(gc, color, xInit, yInit, side);
@@ -130,20 +133,75 @@ public class Bot extends Player {
                     super.move("left");
                 }
             }else {
-                Random rand = new Random();
-                if (rand.nextBoolean()) {
-                    super.move("left");
-                } else {
-                    super.move("right");
+                // on de gauche à droite , ou random
+                Random randGDouRandom = new Random();
+
+                // choisi entre 10 fois la direction actuel ou full random
+                if(randGDouRandom.nextBoolean()){
+                    // pour que le bot bouge 10 fois dans la même direction
+                        if (cptMoves == 0){
+                            Random randGD = new Random();
+                            if (randGD.nextBoolean()) {
+                                actualDirect = "left";
+                                super.move(actualDirect);
+                            } else {
+                                actualDirect = "right";
+                                super.move(actualDirect);
+                            }
+                            cptMoves += 1;
+                        } else if(cptMoves < 20){
+                            super.move(actualDirect);
+                            cptMoves += 1;
+
+                        } else{
+                            //cptMoves == 20
+                            super.move(actualDirect);
+                            cptMoves = 0;
+                        }
+                }else{
+                    // sinon full random (déplacement + naturels)
+                    Random randGD = new Random();
+                    if (randGD.nextBoolean()) {
+                        super.move("left");
+                    } else {
+                        super.move("right");
+                    }
                 }
             }
 
         } else {
-            Random rand = new Random();
-            if (rand.nextBoolean()) {
-                super.move("left");
-            } else {
-                super.move("right");
+            Random randGDouRandom = new Random();
+
+            // choisi entre 10 fois la direction actuel ou full random
+            if(randGDouRandom.nextBoolean()){
+                // pour que le bot bouge 10 fois dans la même direction
+                if (cptMoves == 0){
+                    Random randGD = new Random();
+                    if (randGD.nextBoolean()) {
+                        actualDirect = "left";
+                        super.move(actualDirect);
+                    } else {
+                        actualDirect = "right";
+                        super.move(actualDirect);
+                    }
+                    cptMoves += 1;
+                } else if(cptMoves < 20){
+                    super.move(actualDirect);
+                    cptMoves += 1;
+
+                } else{
+                    //cptMoves == 20
+                    super.move(actualDirect);
+                    cptMoves = 0;
+                }
+            }else{
+                // sinon full random (déplacement + naturels)
+                Random randGD = new Random();
+                if (randGD.nextBoolean()) {
+                    super.move("left");
+                } else {
+                    super.move("right");
+                }
             }
         }
     }
