@@ -130,6 +130,13 @@ public class Bot extends Player {
                 } else {
                     super.move("left");
                 }
+            }else {
+                Random rand = new Random();
+                if (rand.nextBoolean()) {
+                    super.move("left");
+                } else {
+                    super.move("right");
+                }
             }
 
         } else {
