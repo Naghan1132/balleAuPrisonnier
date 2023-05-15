@@ -43,4 +43,4 @@ Les touches "qzsd" permettent le déplacement/directiondestirs du personnage ave
 
 
 
-[!GAME](https://i.imgur.com/apSsTGG.png)
+![GAME](https://i.imgur.com/apSsTGG.png)
