@@ -40,3 +40,7 @@ Les touches "qzsd" permettent le déplacement/directiondestirs du personnage ave
 * fleches directionelles sur les côtés:  direction du personnage
 * fleches directionelles sur les hauteurs: direction des tirs
 * entrée : tirer
+
+
+
+[!GAME](https://i.imgur.com/apSsTGG.png)
